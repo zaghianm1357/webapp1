@@ -109,7 +109,7 @@ section{margin-top:16px}
 .donut-card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:12px 8px;text-align:center}
 .donut-card h4{font-size:.7rem;font-weight:800;color:#0f2042;min-height:2.2em;display:flex;align-items:center;justify-content:center;gap:4px}
 .donut-card h4 i{width:8px;height:8px;border-radius:3px;display:inline-block}
-.donut-card svg{width:100%;max-width:130px}
+.donut-card svg{width:100%;max-width:150px}
 .donut-card .d-sub{font-size:.62rem;color:var(--muted)}
 .note-strip{margin-top:10px;font-size:.68rem;color:#64748b;background:#f1f5f9;border:1px dashed #cbd5e1;border-radius:12px;padding:8px 12px}
 /* هشدارها */
@@ -129,8 +129,9 @@ section{margin-top:16px}
 .search svg{position:absolute;right:11px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:#94a3b8}
 .tbl-wrap{overflow-x:auto;border:1px solid #e2e8f0;border-radius:16px}
 table{width:100%;border-collapse:collapse;font-size:.76rem;min-width:820px}
-thead th{background:var(--thead);color:#0f2042;font-weight:800;font-size:.7rem;padding:11px 10px;
-  text-align:right;position:sticky;top:0;z-index:2;border-bottom:2px solid #dbe3ee;white-space:nowrap}
+thead th{background:#14532d;color:#f2fbf5;font-weight:800;font-size:.7rem;padding:11px 10px;
+  text-align:right;position:sticky;top:0;z-index:2;border-bottom:2px solid #0c3d1f;white-space:nowrap;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
 tbody td{padding:9px 10px;border-bottom:1px solid #eef2f7;vertical-align:middle}
 tbody tr:hover{background:#f6fafd}
 tbody tr.expandable{cursor:pointer}
@@ -141,6 +142,20 @@ tr.detail-row td{background:#f8fafc;padding:12px 14px}
 .del-row td{background:#fef2f2}
 .mini-act{display:flex;gap:6px;align-items:center}
 .mini-act select{font-family:inherit;font-size:.64rem;border:1px solid #dbe3ee;border-radius:8px;padding:4px 6px;background:#fff;color:#0f2042;max-width:130px}
+/* فیلتر وضعیت جذب */
+.filter-sel{font-family:inherit;font-size:.72rem;font-weight:700;border:1.5px solid #dbe3ee;border-radius:12px;
+  padding:8px 10px;background:#fff;color:#0f2042;outline:none;cursor:pointer;max-width:240px;transition:.15s}
+.filter-sel:focus{border-color:#14532d;box-shadow:0 0 0 3px rgba(20,83,45,.14)}
+/* دکمه‌های خروجی جدول */
+.export-group{display:inline-flex;gap:5px;align-items:center}
+.exp-btn{font-family:inherit;font-size:.66rem;font-weight:800;cursor:pointer;border-radius:10px;padding:7px 11px;transition:.15s;border:1.5px solid transparent}
+.exp-btn.xls{background:#ecfdf5;border-color:#b7e4cf;color:#047857}
+.exp-btn.xls:hover{background:#d9f5e8}
+.exp-btn.pdf{background:#eff6ff;border-color:#bfd6f7;color:#1d4ed8}
+.exp-btn.pdf:hover{background:#dfeafc}
+.exp-btn.jpg{background:#fef3c7;border-color:#f2dc9b;color:#b45309}
+.exp-btn.jpg:hover{background:#fdecbd}
+.exp-btn.busy{opacity:.55;cursor:wait}
 .icon-btn{width:26px;height:26px;border-radius:8px;border:1px solid #fbcfd4;background:#fef2f2;color:#dc2626;
   cursor:pointer;display:grid;place-items:center;font-size:.72rem;font-weight:800;flex:none}
 .icon-btn.restore{background:#ecfdf5;border-color:#bbe9d5;color:#059669}
@@ -166,6 +181,22 @@ tr.detail-row td{background:#f8fafc;padding:12px 14px}
 .toast small{display:block;font-weight:400;color:var(--muted);font-size:.7rem}
 @keyframes tin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 footer{margin-top:26px;text-align:center;font-size:.68rem;color:#7d93b8}
+/* نمای چاپ (خروجی PDF جدول) */
+#printArea{display:none}
+@media print{
+  @page{size:A4 landscape;margin:10mm}
+  body{background:#fff!important}
+  .orb,#app,#toasts,.dropzone{display:none!important}
+  #printArea{display:block!important;font-family:'Vazirmatn',Tahoma,sans-serif;color:#111}
+  #printArea .p-title{font-size:16pt;font-weight:800;color:#14532d;margin-bottom:2mm}
+  #printArea .p-sub{font-size:9pt;color:#475569;margin-bottom:4mm}
+  #printArea table{width:100%;border-collapse:collapse;font-size:8.2pt}
+  #printArea thead th{background:#14532d!important;color:#fff!important;border:1px solid #0c3d1f;padding:5px 6px;text-align:right;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #printArea tbody td{border:1px solid #cbd5e1;padding:4px 6px}
+  #printArea tbody tr:nth-child(even) td{background:#f5f8f6;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #printArea tfoot td{border:1px solid #94a3b8;padding:5px 6px;font-weight:800;background:#eef7f1;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #printArea .p-foot{margin-top:4mm;font-size:8pt;color:#64748b;text-align:center}
+}
 /* ریسپانسیو */
 @media(max-width:1080px){.gauges{grid-template-columns:repeat(3,1fr)}.donut-grid{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){
@@ -212,6 +243,7 @@ footer{margin-top:26px;text-align:center;font-size:.68rem;color:#7d93b8}
     <a href="#sec-totals">جمع کل اعتبارات</a>
     <a href="#sec-kpi">شاخص‌های کلیدی</a>
     <a href="#sec-bars">مقایسه دسته‌ها</a>
+    <a href="#sec-income">گزارش درآمدها</a>
     <a href="#sec-donuts">دونات‌های تحلیلی</a>
     <a href="#sec-alerts">هشدارها</a>
     <a href="#sec-tables">جداول تفصیلی</a>
@@ -256,7 +288,7 @@ footer{margin-top:26px;text-align:center;font-size:.68rem;color:#7d93b8}
       <div class="panel-head">
         <div>
           <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><rect x="6" y="8" width="3" height="10"/><rect x="11" y="12" width="3" height="6"/><rect x="16" y="5" width="3" height="13"/></svg>مقایسه مصوب، تامین و تخصیص به تفکیک دسته</h3>
-          <p class="sub">درآمدهای سازمان در پنل مجزا با مقیاس مستقل نمایش داده می‌شوند</p>
+          <p class="sub">اعتبارات هزینه‌ای — درآمدهای سازمان در بخش مجزای «گزارش درآمدها» نمایش داده می‌شوند</p>
         </div>
         <div class="legend">
           <span><i style="background:#0ea5e9"></i>اعتبار مصوب</span>
@@ -265,6 +297,24 @@ footer{margin-top:26px;text-align:center;font-size:.68rem;color:#7d93b8}
         </div>
       </div>
       <div class="chart-flex" id="catCharts"></div>
+    </div>
+  </section>
+
+  <section id="sec-income">
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20"/><path d="M17 7H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>گزارش درآمدهای سازمان — بخش مجزا</h3>
+          <p class="sub">نمودار و جدول مستقل درآمدها؛ همیشه قابل مشاهده است و هرگز با اعتبارات هزینه‌ای تجمیع نمی‌شود</p>
+        </div>
+        <div class="legend">
+          <span><i style="background:#0ea5e9"></i>اعتبار مصوب</span>
+          <span><i style="background:#10b981"></i>تامین اعتبار ثبت شده</span>
+          <span><i style="background:#f59e0b"></i>تخصیص ثبت شده</span>
+        </div>
+      </div>
+      <div id="incomeChart"></div>
+      <div id="incomeTable"></div>
     </div>
   </section>
 
@@ -314,6 +364,7 @@ footer{margin-top:26px;text-align:center;font-size:.68rem;color:#7d93b8}
 </div>
 
 <input type="file" id="excelInput" accept=".xlsx,.xls" style="display:none">
+<div id="printArea"></div>
 <div id="toasts"></div>
 
 <script>/* SheetJS (embedded — offline) */
@@ -344,6 +395,7 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
 <script>
 window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان عمران — شهرداری","sourceFile":"اعتبار مصوب 1405.xlsx","generatedAt":"2026-10-26","rowCount":136,"phaseCount":13},"totals":{"approved":37600274650750,"provisioned":24877931744822,"allocated":6885003712820,"remaining":30715270937930,"absorption":0.18311},"rows":[{"id":1,"code":"10430200027","title":"","description":"آماده سازی توقفگاه(جهت برگزاری مراسم تشییع قائد امت)","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"اعتبارات تفویضی و عاملیت","categoryKey":"delegated","approved":200000000000,"provisioned":199895992950,"allocated":197562023945,"remaining":2437976055,"absorption":0.98781,"status":"نزدیک به سقف","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":200000000000,"provisioned":199895992950,"allocated":197562023945},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":2,"code":"54110207002","title":"","description":"مزایای كاركنان مامور خدمت  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":2904171786,"provisioned":2775922541,"allocated":2775922541,"remaining":128249245,"absorption":0.95584,"status":"نزدیک به سقف","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2904171786,"provisioned":2775922541,"allocated":2775922541},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":3,"code":"54110107002","title":"","description":"حقوق كاركنان مأمور به خدمت  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":533138095,"provisioned":509076941,"allocated":509076941,"remaining":24061154,"absorption":0.954869,"status":"نزدیک به سقف","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":533138095,"provisioned":509076941,"allocated":509076941},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":4,"code":"10210100152","title":"","description":"احداث مسیر  بین جاده فریمان تا آزادراه شهید شوشتری(جهت برگزاری مراسم تشییع قائد امت)","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"اعتبارات تفویضی و عاملیت","categoryKey":"delegated","approved":65000000000,"provisioned":59222302670,"allocated":55181875413,"remaining":9818124587,"absorption":0.848952,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":65000000000,"provisioned":59222302670,"allocated":55181875413},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":5,"code":"54162906002","title":"","description":"ذخیره سنوات پایان خدمت كاركنان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":90008231688,"provisioned":75635482546,"allocated":75635482546,"remaining":14372749142,"absorption":0.840317,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":90008231688,"provisioned":75635482546,"allocated":75635482546},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":6,"code":"54162910002","title":"","description":"هزینه بیمه عمر و سرمایه كاركنان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":2622718410,"provisioned":2156175000,"allocated":2156175000,"remaining":466543410,"absorption":0.822115,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":262271841,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2360446569,"provisioned":2156175000,"allocated":2156175000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":7,"code":"54120901002","title":"","description":"هزینه پذیرایی كاركنان و مهمانان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":55737500000,"provisioned":47376756484,"allocated":43309024200,"remaining":12428475800,"absorption":0.777018,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":8360625000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":47376875000,"provisioned":47376756484,"allocated":43309024200},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":8,"code":"54173501001","title":"","description":"بازخرید سنوات خدمت كاركنان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":24741600000,"provisioned":22267440000,"allocated":18422451027,"remaining":6319148973,"absorption":0.744594,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2474160000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":22267440000,"provisioned":22267440000,"allocated":18422451027},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":9,"code":"54121302002","title":"","description":"خریدلوازم مصرفی ادارى  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":6284687500,"provisioned":5615300073,"allocated":4576261503,"remaining":1708425997,"absorption":0.728161,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":628468750,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":5656218750,"provisioned":5615300073,"allocated":4576261503},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":10,"code":"54131901001","title":"","description":"اجاره ساختمان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":46250000000,"provisioned":32456199010,"allocated":32456199010,"remaining":13793800990,"absorption":0.701756,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":4625000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":41625000000,"provisioned":32456199010,"allocated":32456199010},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":11,"code":"54121301013","title":"","description":"خریدلوازم جزیی ساختمان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":3460627976,"provisioned":2879100000,"allocated":2343150000,"remaining":1117477976,"absorption":0.677088,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":346062797,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":3114565179,"provisioned":2879100000,"allocated":2343150000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":12,"code":"54162808008","title":"","description":"هزینه بیمه اثاثیه و منصوبات  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":66781165,"provisioned":43597228,"allocated":43597228,"remaining":23183937,"absorption":0.652837,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":6678116,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":60103049,"provisioned":43597228,"allocated":43597228},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":13,"code":"54120701004","title":"","description":"(هزینه چاپ (اوراق ،دفاتر،نشریات ،آگهی وعکس  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":4179878362,"provisioned":3736000000,"allocated":2673785841,"remaining":1506092521,"absorption":0.63968,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":417987836,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":3761890526,"provisioned":3736000000,"allocated":2673785841},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":14,"code":"54120601002","title":"","description":"نگهدارى وتعمیرات وسایل ادارى  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":2088906175,"provisioned":1859330000,"allocated":1298980000,"remaining":789926175,"absorption":0.621847,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":208890617,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":1880015558,"provisioned":1859330000,"allocated":1298980000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":15,"code":"54162804002","title":"","description":"هزینه بیمه مسیولیت مدنی كاركنان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":1285084914,"provisioned":778936917,"allocated":778936917,"remaining":506147997,"absorption":0.606137,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":1285084914,"provisioned":778936917,"allocated":778936917},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":16,"code":"54121308002","title":"","description":"لوازم آتش نشانی  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":259999870,"provisioned":199700000,"allocated":152400000,"remaining":107599870,"absorption":0.586154,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":25999987,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":233999883,"provisioned":199700000,"allocated":152400000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":17,"code":"10210200862","title":"","description":"تامین قطعات پیش ساخته بتنی(جهت برگزاری مراسم تشییع قائد امت)","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"اعتبارات تفویضی و عاملیت","categoryKey":"delegated","approved":100000000000,"provisioned":54000000000,"allocated":54000000000,"remaining":46000000000,"absorption":0.54,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":100000000000,"provisioned":54000000000,"allocated":54000000000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":18,"code":"54121506001","title":"","description":"حق الزحمه سایر اشخاص  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":6576364796,"provisioned":5392033287,"allocated":3546981590,"remaining":3029383206,"absorption":0.539353,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":58521670,"provisioned":0,"allocated":0},{"approved":599114808,"provisioned":0,"allocated":0},{"approved":526695031,"provisioned":0,"allocated":0},{"approved":5392033287,"provisioned":5392033287,"allocated":3546981590},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":19,"code":"54121307002","title":"","description":"لوازم تنظیف  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":4698000000,"provisioned":3634350000,"allocated":2392950000,"remaining":2305050000,"absorption":0.509355,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":469800000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":4228200000,"provisioned":3634350000,"allocated":2392950000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":20,"code":"54120301002","title":"","description":"ماموریت وهزینه سفرداخل كشور  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":2435420000,"provisioned":1881252358,"allocated":1167881617,"remaining":1267538383,"absorption":0.47954,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":243542000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2191878000,"provisioned":1881252358,"allocated":1167881617},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":21,"code":"54162803021","title":"","description":"هزینه بیمه مسیولیت مدنی شهروندان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":14655808180,"provisioned":11343750000,"allocated":6875000000,"remaining":7780808180,"absorption":0.469097,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":1465580818,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":13190227362,"provisioned":11343750000,"allocated":6875000000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":22,"code":"54120502002","title":"","description":"نگهدارى وتعمیرات ماشین آلات  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":85254750138,"provisioned":75113157216,"allocated":38421355000,"remaining":46833395138,"absorption":0.450665,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":8525475013,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":76729275125,"provisioned":75113157216,"allocated":38421355000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":23,"code":"54131905001","title":"","description":"كرایه ماشین آلات  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":3124894950,"provisioned":1400000000,"allocated":1400000000,"remaining":1724894950,"absorption":0.448015,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":312489495,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2812405455,"provisioned":1400000000,"allocated":1400000000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":24,"code":"54121208001","title":"","description":"سوخت دستگاههاى حرارتی فضاهای غیراداری  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":110770054200,"provisioned":99693048780,"allocated":47027280699,"remaining":63742773501,"absorption":0.424549,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":11077005420,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":99693048780,"provisioned":99693048780,"allocated":47027280699},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":25,"code":"61640500171","title":"","description":"خرید تجهیزات و ملزومات اساسی اداری سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":15000000000,"provisioned":14904500000,"allocated":6223000000,"remaining":8777000000,"absorption":0.414867,"status":"جذب مطلوب","phases":[{"approved":15000000000,"provisioned":14904500000,"allocated":6223000000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":26,"code":"54162806001","title":"","description":"هزینه بیمه ماشین آلات و تجهیزات  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":25448359568,"provisioned":10318152016,"allocated":10318152016,"remaining":15130207552,"absorption":0.405455,"status":"جذب مطلوب","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2544835956,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":22903523612,"provisioned":10318152016,"allocated":10318152016},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":27,"code":"54162807003","title":"","description":"هزینه بیمه وسایل نقلیه  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":2946642028,"provisioned":1177887385,"allocated":1177887385,"remaining":1768754643,"absorption":0.399739,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":294664202,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2651977826,"provisioned":1177887385,"allocated":1177887385},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":28,"code":"61640500172","title":"","description":"خرید تجهیزات رایانه و قطعات سخت افزاری سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":9000000000,"provisioned":8848000000,"allocated":3192900000,"remaining":5807100000,"absorption":0.354767,"status":"مازاد آزاد","phases":[{"approved":9000000000,"provisioned":8848000000,"allocated":3192900000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":29,"code":"54162809001","title":"","description":"هزینه بیمه ساختمان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":4084052348,"provisioned":1433496951,"allocated":1433496951,"remaining":2650555397,"absorption":0.350999,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":408405234,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":3675647114,"provisioned":1433496951,"allocated":1433496951},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":30,"code":"54110204002","title":"","description":"مزایاى كاركنان قراردادى  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":75952464182,"provisioned":23568586926,"allocated":23568586926,"remaining":52383877256,"absorption":0.310307,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":75952464182,"provisioned":23568586926,"allocated":23568586926},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":31,"code":"54120304002","title":"","description":"كرایه ماشین آلات وسائط نقلیه كاركنان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":44637088394,"provisioned":16270621921,"allocated":13542819407,"remaining":31094268987,"absorption":0.303398,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":6695563259,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":37941525135,"provisioned":16270621921,"allocated":13542819407},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":32,"code":"54162908002","title":"","description":"هزینه رفاهی شغلی كاركنان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":88154943387,"provisioned":26071023798,"allocated":26071023798,"remaining":62083919589,"absorption":0.295741,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":8815494338,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":79339449049,"provisioned":26071023798,"allocated":26071023798},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":33,"code":"54120402002","title":"","description":"هزینه تلفن وفاكس  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":1144224000,"provisioned":665585222,"allocated":338358736,"remaining":805865264,"absorption":0.29571,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":114422400,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":1029801600,"provisioned":665585222,"allocated":338358736},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":34,"code":"54121203002","title":"","description":"سوخت وسایل نقلیه  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":864000000,"provisioned":535848626,"allocated":249405829,"remaining":614594171,"absorption":0.288664,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":86400000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":777600000,"provisioned":535848626,"allocated":249405829},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":35,"code":"54110202002","title":"","description":"مزایاى كارمندان رسمی  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":62825955890,"provisioned":18130832749,"allocated":18130832749,"remaining":44695123141,"absorption":0.288588,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":62825955890,"provisioned":18130832749,"allocated":18130832749},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":36,"code":"54162805001","title":"","description":"هزینه بیمه تاسیسات  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":383450113,"provisioned":108139235,"allocated":108139235,"remaining":275310878,"absorption":0.282016,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":38345010,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":345105103,"provisioned":108139235,"allocated":108139235},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":37,"code":"54110106002","title":"","description":"دستمزد كارگران رسمی  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":349440629118,"provisioned":98288229116,"allocated":98288229116,"remaining":251152400002,"absorption":0.281273,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":349440629118,"provisioned":98288229116,"allocated":98288229116},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":38,"code":"54121309012","title":"","description":"خریدتابلووپلاك راهنما  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":250614000,"provisioned":78000000,"allocated":70272736,"remaining":180341264,"absorption":0.280402,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":25061400,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":225552600,"provisioned":78000000,"allocated":70272736},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":39,"code":"54110105001","title":"","description":"دستمزد كارگران موقت  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":58061052332,"provisioned":16260437865,"allocated":16260437865,"remaining":41800614467,"absorption":0.280058,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":58061052332,"provisioned":16260437865,"allocated":16260437865},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":40,"code":"54121305001","title":"","description":"سایر مواد و مصالح مصرفی تولید  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":3514135134000,"provisioned":3095679742144,"allocated":980018294060,"remaining":2534116839940,"absorption":0.278879,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":351413513398,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":3162721620602,"provisioned":3095679742144,"allocated":980018294060},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":41,"code":"54162801002","title":"","description":"حق بیمه كاركنان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":295887921517,"provisioned":82287113089,"allocated":82287113089,"remaining":213600808428,"absorption":0.278102,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":295887921517,"provisioned":82287113089,"allocated":82287113089},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":42,"code":"54110102002","title":"","description":"حقوق كارمندان رسمی  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":19838028796,"provisioned":5440335096,"allocated":5440335096,"remaining":14397693700,"absorption":0.274238,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":19838028796,"provisioned":5440335096,"allocated":5440335096},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":43,"code":"54110206001","title":"","description":"مزایاى كارگران موقت  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":16921608688,"provisioned":4549504913,"allocated":4549504913,"remaining":12372103775,"absorption":0.268858,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":16921608688,"provisioned":4549504913,"allocated":4549504913},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":44,"code":"54110210002","title":"","description":"فوق العاده ،اضافه كارساعتی ،جمعه كارى ونوبت كارى  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":435616335939,"provisioned":116293823696,"allocated":116293823696,"remaining":319322512243,"absorption":0.266964,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":435616335939,"provisioned":116293823696,"allocated":116293823696},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":45,"code":"54120801003","title":"","description":"(هزینه تصویربرداری و تبلیغات(عکس، فیلمبرداری، آگهی تبلیغات  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":6433938561,"provisioned":3719540000,"allocated":1704600000,"remaining":4729338561,"absorption":0.264939,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":547345856,"provisioned":0,"allocated":0},{"approved":96048000,"provisioned":0,"allocated":0},{"approved":4926112705,"provisioned":2857160000,"allocated":1247600000},{"approved":864432000,"provisioned":862380000,"allocated":457000000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":46,"code":"54162912001","title":"","description":"كمك هزينه مسكن  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":33341172826,"provisioned":7928928000,"allocated":7928928000,"remaining":25412244826,"absorption":0.237812,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":33341172826,"provisioned":7928928000,"allocated":7928928000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":47,"code":"54121503011","title":"","description":"هزینه واگذارى خدمات شهری  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":7894392700692,"provisioned":5257157032067,"allocated":1854056807521,"remaining":6040335893171,"absorption":0.234857,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":13252501698,"provisioned":0,"allocated":0},{"approved":546906403404,"provisioned":0,"allocated":0},{"approved":75097509625,"provisioned":0,"allocated":0},{"approved":7259136285965,"provisioned":5257157032067,"allocated":1854056807521},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":48,"code":"54110104002","title":"","description":"حقوق كاركنان قراردادی  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":19182404875,"provisioned":4407749531,"allocated":4407749531,"remaining":14774655344,"absorption":0.229781,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":19182404875,"provisioned":4407749531,"allocated":4407749531},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":49,"code":"54110205002","title":"","description":"مزایاى كارگران رسمی  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":107229669010,"provisioned":24241631578,"allocated":24241631578,"remaining":82988037432,"absorption":0.226072,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":107229669010,"provisioned":24241631578,"allocated":24241631578},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":50,"code":"54110211002","title":"","description":"كمك غیرنقدى كمك عایله مندى بن كالاهاى اساسی كارگران  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":160959392530,"provisioned":35586806976,"allocated":35586806976,"remaining":125372585554,"absorption":0.221092,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":160959392530,"provisioned":35586806976,"allocated":35586806976},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":51,"code":"54162802002","title":"","description":"بیمه تكمیل درمان كاركنان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":53997974407,"provisioned":11151500000,"allocated":11151500000,"remaining":42846474407,"absorption":0.206517,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":5399797440,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":48598176967,"provisioned":11151500000,"allocated":11151500000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":52,"code":"54120802002","title":"","description":"برگزاری نمایشگاهها  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":3850000000,"provisioned":783000000,"allocated":783000000,"remaining":3067000000,"absorption":0.203377,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":385000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":3465000000,"provisioned":783000000,"allocated":783000000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":53,"code":"54120501002","title":"","description":"نگهدارى وتعمیرات جزیی ساختمان وتاسیسات  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":3229423698,"provisioned":676670000,"allocated":471670000,"remaining":2757753698,"absorption":0.146054,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":322942369,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2906481329,"provisioned":676670000,"allocated":471670000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":54,"code":"54120503002","title":"","description":"نگهدارى وتعمیرات وسایط نقلیه  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":2607632777,"provisioned":1950000200,"allocated":245000000,"remaining":2362632777,"absorption":0.093955,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":260763277,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2346869500,"provisioned":1950000200,"allocated":245000000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":55,"code":"54120602001","title":"","description":"نگهدارى وتعمیرات تجهیزات ارتباطی و بیسیم  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":858739700,"provisioned":76000000,"allocated":76000000,"remaining":782739700,"absorption":0.088502,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":85873970,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":772865730,"provisioned":76000000,"allocated":76000000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":56,"code":"41210100023","title":"","description":"مشارکت دراحداث مرکز بازپروری معتادین برزش آباد","beneficiary":"سازمان اجتماعی، فرهنگی، ورزشی و امور زیارت","executor":"سازمان عمران","category":"اعتبارات تفویضی و عاملیت","categoryKey":"delegated","approved":700000000000,"provisioned":63581587271,"allocated":48554807068,"remaining":651445192932,"absorption":0.069364,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":700000000000,"provisioned":63581587271,"allocated":48554807068},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":57,"code":"54121207001","title":"","description":"بهاى برق مصرفی فضاهای غیر اداری  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":80905415622,"provisioned":72814874060,"allocated":2328542420,"remaining":78576873202,"absorption":0.028781,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":8090541562,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":72814874060,"provisioned":72814874060,"allocated":2328542420},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":58,"code":"54121101002","title":"","description":"(هزینه هاى بانكی (كارمزد،بهاى دسته چك ،اوراق بهادار  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":261625000,"provisioned":60080291,"allocated":1966230,"remaining":259658770,"absorption":0.007515,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":7475000,"provisioned":0,"allocated":0},{"approved":18687500,"provisioned":0,"allocated":0},{"approved":67275000,"provisioned":0,"allocated":0},{"approved":168187500,"provisioned":60080291,"allocated":1966230},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":59,"code":"54162902002","title":"","description":"هزینه هاى رفاهی كاركنان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":85236000000,"provisioned":463500000,"allocated":463500000,"remaining":84772500000,"absorption":0.005438,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":8523600000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":76712400000,"provisioned":463500000,"allocated":463500000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":60,"code":"54121303002","title":"","description":"لوازم یدكی ماشین آلات ووسائط نقلیه  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":176528699287,"provisioned":62439448390,"allocated":113000000,"remaining":176415699287,"absorption":0.00064,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":17652869927,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":158875829360,"provisioned":62439448390,"allocated":113000000},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":61,"code":"10110900003","title":"","description":"اجرای عملیات جدول دوطرفه برای مسیرخط BRT1 حد فاصل میدان طبرسی تا میدان فجر(رفت و برگشت)","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"طبقه‌بندی نشده","categoryKey":"other","approved":361685028586,"provisioned":0,"allocated":0,"remaining":361685028586,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":361685028586,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":62,"code":"10210200772","title":"","description":"خرید آسفالت معابر سطح شهر","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"اعتبارات تفویضی و عاملیت","categoryKey":"delegated","approved":840000000000,"provisioned":0,"allocated":0,"remaining":840000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":392000000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":448000000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":63,"code":"10210200871","title":"","description":"تامین آسفالت سطح شهر","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"اعتبارات تفویضی و عاملیت","categoryKey":"delegated","approved":2500000000000,"provisioned":0,"allocated":0,"remaining":2500000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2500000000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":64,"code":"10210400163","title":"","description":"مناسب سازی تقاطع سلام(جهت برگزاری مراسم تشییع قائد امت)","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"اعتبارات تفویضی و عاملیت","categoryKey":"delegated","approved":350000000000,"provisioned":500000000,"allocated":0,"remaining":350000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":350000000000,"provisioned":500000000,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":65,"code":"10210800688","title":"","description":"حمل قیر بازآفرینی","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"اعتبارات تفویضی و عاملیت","categoryKey":"delegated","approved":20000000000,"provisioned":20000000000,"allocated":0,"remaining":20000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":20000000000,"provisioned":20000000000,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":66,"code":"10220400158","title":"","description":"تعمیرات  پل‌ها و زیرگذرهای عابر پیاده (توس 13،33،43،53،61،65،85، فردوسی 5،11،13،17 ، بلوار جانباز، بلوار فرامرز، خیام 52، فخر، فتح، میدان شهید فهمیده، کال حجت و فرامرز)","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"اعتبارات تفویضی و عاملیت","categoryKey":"delegated","approved":986098893252,"provisioned":22565600000,"allocated":0,"remaining":986098893252,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":986098893252,"provisioned":22565600000,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":67,"code":"413011407","title":"","description":"(درآمد انجام خدمات شهرداري (كاركرد ماشين آلات","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"درآمدهای سازمان","categoryKey":"income","approved":456960000000,"provisioned":456960000000,"allocated":133669331370,"remaining":323290668630,"absorption":0.292519,"status":"مازاد آزاد","phases":[{"approved":456960000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":68,"code":"413011408","title":"","description":"قراردادهاي منعقد با شهرداري","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"درآمدهای سازمان","categoryKey":"income","approved":4991323984654,"provisioned":4991323984654,"allocated":1180524313601,"remaining":3810799671053,"absorption":0.236515,"status":"مازاد آزاد","phases":[{"approved":4991323984654,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":69,"code":"414010103","title":"","description":"مال الاجاره ساختمان ها و تاسيسات شهرداري","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"درآمدهای سازمان","categoryKey":"income","approved":1506880000,"provisioned":1506880000,"allocated":624408008,"remaining":882471992,"absorption":0.414371,"status":"جذب مطلوب","phases":[{"approved":1506880000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":70,"code":"414010802","title":"","description":"منابع حاصل از فرآورده هاي بتني شهرداري","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"درآمدهای سازمان","categoryKey":"income","approved":285600000000,"provisioned":285600000000,"allocated":264346589000,"remaining":21253411000,"absorption":0.925583,"status":"نزدیک به سقف","phases":[{"approved":285600000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":71,"code":"414010901","title":"","description":"درآمد حاصل از فروش محصولات كارخانه آسفالت","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"درآمدهای سازمان","categoryKey":"income","approved":5072000000000,"provisioned":5072000000000,"allocated":1308621362950,"remaining":3763378637050,"absorption":0.258009,"status":"مازاد آزاد","phases":[{"approved":5072000000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":72,"code":"414020205","title":"","description":"درآمد حاصل از وجوه سپرده هاي شهرداري","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"درآمدهای سازمان","categoryKey":"income","approved":4080000000,"provisioned":4080000000,"allocated":1475201187,"remaining":2604798813,"absorption":0.361569,"status":"مازاد آزاد","phases":[{"approved":2720000000,"provisioned":0,"allocated":0},{"approved":1360000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":73,"code":"414020510","title":"","description":"منابع حاصل از اجرای طرح خودکفایی","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"درآمدهای سازمان","categoryKey":"income","approved":200323805644,"provisioned":200323805644,"allocated":0,"remaining":200323805644,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":200000000000,"provisioned":0,"allocated":0},{"approved":323805644,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":74,"code":"416021204","title":"","description":"منابع حاصل از دريافت خسارت از بيمه ها","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"درآمدهای سازمان","categoryKey":"income","approved":4727360000,"provisioned":4727360000,"allocated":0,"remaining":4727360000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":2992000000,"provisioned":0,"allocated":0},{"approved":1735360000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":75,"code":"423010001","title":"","description":"منابع حاصل از فروش اموال اسقاطي و ضايعات","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"درآمدهای سازمان","categoryKey":"income","approved":27200000000,"provisioned":27200000000,"allocated":1646100000,"remaining":25553900000,"absorption":0.060518,"status":"مازاد آزاد","phases":[{"approved":27200000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":76,"code":"433020003","title":"","description":"مازاد مصارف غیر نقدی (استهلاک و سنوات)","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"طبقه‌بندی نشده","categoryKey":"other","approved":491448253188,"provisioned":491448253188,"allocated":-288507241,"remaining":491736760429,"absorption":-0.000587,"status":"نیازمند متمم","phases":[{"approved":123348412852,"provisioned":0,"allocated":0},{"approved":368099840336,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":77,"code":"51310219582","title":"","description":"اتصال مسیل تنباکوچی به مسیل اقبال","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"طبقه‌بندی نشده","categoryKey":"other","approved":181076000000,"provisioned":38850000000,"allocated":0,"remaining":181076000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":181076000000,"provisioned":38850000000,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":78,"code":"51320100064","title":"","description":"احداث ایستگاه اتش نشانی بهار (امام رضا)","beneficiary":"معاونت محیط زیست و خدمات شهری","executor":"سازمان عمران","category":"طبقه‌بندی نشده","categoryKey":"other","approved":405900000000,"provisioned":78355813224,"allocated":0,"remaining":405900000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":405900000000,"provisioned":78355813224,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":79,"code":"54110101009","title":"","description":"حقوق مدیرارشد  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":407655201,"provisioned":0,"allocated":0,"remaining":407655201,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":407655201,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":80,"code":"54110201009","title":"","description":"مزایاى مدیرارشد  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":2919101070,"provisioned":0,"allocated":0,"remaining":2919101070,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2919101070,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":81,"code":"54110212002","title":"","description":"پاداش وعیدى  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":73719837974,"provisioned":0,"allocated":0,"remaining":73719837974,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":73719837974,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":82,"code":"54121002003","title":"","description":"هزینه های قضایی  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":407387500,"provisioned":0,"allocated":0,"remaining":407387500,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":20369375,"provisioned":0,"allocated":0},{"approved":20369375,"provisioned":0,"allocated":0},{"approved":183324375,"provisioned":0,"allocated":0},{"approved":183324375,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":83,"code":"54121202002","title":"","description":"سوخت ماشین آلات سنگین  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":15588004502,"provisioned":2160000000,"allocated":0,"remaining":15588004502,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":1558800450,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":14029204052,"provisioned":2160000000,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":84,"code":"54121205001","title":"","description":"آب بهای فضاهای غیر اداری  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":5183999999,"provisioned":0,"allocated":0,"remaining":5183999999,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":518399999,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":4665600000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":85,"code":"54121206002","title":"","description":"بهاى برق مصرفی ساختمانهای اداری  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":4139967600,"provisioned":3725970840,"allocated":0,"remaining":4139967600,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":413996760,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":3725970840,"provisioned":3725970840,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":86,"code":"54121304002","title":"","description":"لباس كاركنان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":10880000000,"provisioned":0,"allocated":0,"remaining":10880000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":1088000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":9792000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":87,"code":"54121402003","title":"","description":"هزینه هاى آموزشی کارکنان  در اختیار  دفتر نوسازی و تحول سازمانی-گروه آموزش و توانمند سازی","beneficiary":"معاونت برنامه ریزی و توسعه سرمایه انسانی","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":3946000000,"provisioned":0,"allocated":0,"remaining":3946000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":3946000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":88,"code":"54121501004","title":"","description":"(حق (الجلسه، حق التدریس  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":1892808000,"provisioned":0,"allocated":0,"remaining":1892808000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":189280800,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":1703527200,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":89,"code":"54121503127","title":"","description":"هزینه واگذارى خدمات شهری  در اختیار  دفتر نوسازی و تحول سازمانی-گروه آموزش و توانمند سازی","beneficiary":"معاونت برنامه ریزی و توسعه سرمایه انسانی","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":4000000000,"provisioned":0,"allocated":0,"remaining":4000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":4000000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":90,"code":"54121504006","title":"","description":"هزینه واگذارى خدمات ادارى  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":108888161137,"provisioned":850000000,"allocated":0,"remaining":108888161137,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":16333224170,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":92554936967,"provisioned":850000000,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":91,"code":"54121505002","title":"","description":"حق الزحمه حسابرسی  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":3827623413,"provisioned":0,"allocated":0,"remaining":3827623413,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":310037496,"provisioned":0,"allocated":0},{"approved":72724844,"provisioned":0,"allocated":0},{"approved":2790337469,"provisioned":0,"allocated":0},{"approved":654523604,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":92,"code":"54132001001","title":"","description":"مصرف ساختمان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":8020709771,"provisioned":0,"allocated":0,"remaining":8020709771,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":8020709771,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":93,"code":"54132002001","title":"","description":"مصرف ماشین آلات و تجهیزات  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":365483317610,"provisioned":0,"allocated":0,"remaining":365483317610,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":358454807194,"provisioned":0,"allocated":0},{"approved":7028510416,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":94,"code":"54132003002","title":"","description":"مصرف وسایل نقلیه  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":5917679649,"provisioned":0,"allocated":0,"remaining":5917679649,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":5917679649,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":95,"code":"54132004001","title":"","description":"مصرف تاسیسات  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":1910018486,"provisioned":0,"allocated":0,"remaining":1910018486,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":1385736277,"provisioned":0,"allocated":0},{"approved":524282209,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":96,"code":"54132005002","title":"","description":"مصرف ابزار آلات  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":1573417786,"provisioned":0,"allocated":0,"remaining":1573417786,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":256243574,"provisioned":0,"allocated":0},{"approved":1317174212,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":97,"code":"54132006002","title":"","description":"مصرف اثاثیه و منصوبات  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":18469088554,"provisioned":0,"allocated":0,"remaining":18469088554,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":8003053291,"provisioned":0,"allocated":0},{"approved":10466035263,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":98,"code":"54132007002","title":"","description":"مصرف نرم افزار  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":65789642,"provisioned":0,"allocated":0,"remaining":65789642,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":65789642,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":99,"code":"54152703002","title":"","description":"كمك به فعالیتهای بسیج  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":3226916518,"provisioned":1725300000,"allocated":0,"remaining":3226916518,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":322691651,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2904224867,"provisioned":1725300000,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":100,"code":"54152703016","title":"","description":"کمک به فعالیتهای بسیج  در اختیار  حوزه شهردار-حوزه مقاومت بسیج شهدای شهرداری و شورای اسلامی شهر","beneficiary":"حوزه شهردار","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":2000000000,"provisioned":0,"allocated":0,"remaining":2000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2000000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":101,"code":"54162809015","title":"","description":"هزینه بیمه ساختمان  در اختیار  اداره کل پشتیبانی-اداره رفاه و سلامت کارکنان","beneficiary":"معاونت مالی و پشتیبانی","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":1830440675,"provisioned":0,"allocated":0,"remaining":1830440675,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":1830440675,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":102,"code":"54162901002","title":"","description":"هدایاوپرداختهاى تشویقی به كاركنان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":12757800000,"provisioned":0,"allocated":0,"remaining":12757800000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":659280000,"provisioned":0,"allocated":0},{"approved":616500000,"provisioned":0,"allocated":0},{"approved":5933520000,"provisioned":0,"allocated":0},{"approved":5548500000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":103,"code":"54162904002","title":"","description":"كمك هزینه ورزشی  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":27474000000,"provisioned":11500000000,"allocated":0,"remaining":27474000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2747400000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":24726600000,"provisioned":11500000000,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":104,"code":"54162905012","title":"","description":"کمک هزینه سرویس حمل و نقل در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":8328960000,"provisioned":0,"allocated":0,"remaining":8328960000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":832896000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":7496064000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":105,"code":"54162909002","title":"","description":"هزینه رفاهی بهره وری كاركنان  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":74683440000,"provisioned":0,"allocated":0,"remaining":74683440000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":7468344000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":67215096000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":106,"code":"54162911001","title":"","description":"پرداخت هاي مناسبتي (اعياد،بازگشايي مدارس،روزهاي ملي و مذهبي و ...)  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":78084000000,"provisioned":0,"allocated":0,"remaining":78084000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":7808400000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":70275600000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":107,"code":"54162913009","title":"","description":"کمک هزینه غذا و اقلام خوراکی در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":2,"provisioned":0,"allocated":0,"remaining":2,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":1,"provisioned":0,"allocated":0},{"approved":1,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":108,"code":"54163401001","title":"","description":"هزینه كاركنان فوت شده  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":2250000000,"provisioned":0,"allocated":0,"remaining":2250000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":225000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2025000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":109,"code":"54163403001","title":"","description":"كمك هزينه جواني جمعيت (ازدواج ، فرزندآوري و مهدكودك)  در اختیار سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"هزینه‌های جاری","categoryKey":"current","approved":3450000000,"provisioned":0,"allocated":0,"remaining":3450000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":345000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":3105000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":110,"code":"61610300287","title":"","description":"تجهیز مرکز نوآوری مهندسی عمران","beneficiary":"معاونت برنامه ریزی و توسعه سرمایه انسانی","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":40000000000,"provisioned":33760493550,"allocated":0,"remaining":40000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":40000000000,"provisioned":33760493550,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":111,"code":"61640200014","title":"","description":"تعمیر و تجهیز فضادی اداری سازمان عمران","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":1500000000,"provisioned":0,"allocated":0,"remaining":1500000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":1500000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":112,"code":"61640200334","title":"","description":"تعمیر و مرمت مجتمع رفاهی فردوسی ( عباس آباد )","beneficiary":"معاونت مالی و پشتیبانی","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":108472408847,"provisioned":45938800000,"allocated":0,"remaining":108472408847,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":108472408847,"provisioned":45938800000,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":113,"code":"61640200358","title":"","description":"تعمیرات اساسی ساختمان ارتش","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":50000000000,"provisioned":25016370609,"allocated":0,"remaining":50000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":50000000000,"provisioned":25016370609,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":114,"code":"61680100024","title":"","description":"خرید سه دستگاه فنیشرآسفالت","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":10000000000,"provisioned":10000000000,"allocated":0,"remaining":10000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":10000000000,"provisioned":10000000000,"allocated":0}]},{"id":115,"code":"61680100026","title":"","description":"خرید کامیون کمپرسی10 چرخ","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":2100000000000,"provisioned":2100000000000,"allocated":0,"remaining":2100000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":2100000000000,"provisioned":2100000000000,"allocated":0}]},{"id":116,"code":"61680100027","title":"","description":"خرید کامیون قیر پاش","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":10000000000,"provisioned":10000000000,"allocated":0,"remaining":10000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":10000000000,"provisioned":10000000000,"allocated":0}]},{"id":117,"code":"61680100028","title":"","description":"خرید مینی لودر (توماس)","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":10000000000,"provisioned":10000000000,"allocated":0,"remaining":10000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":10000000000,"provisioned":10000000000,"allocated":0}]},{"id":118,"code":"61680100029","title":"","description":"خرید پمپ بتن","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":10000000000,"provisioned":10000000000,"allocated":0,"remaining":10000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":10000000000,"provisioned":10000000000,"allocated":0}]},{"id":119,"code":"61680100030","title":"","description":"خرید گریدر","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":10000000000,"provisioned":10000000000,"allocated":0,"remaining":10000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":10000000000,"provisioned":10000000000,"allocated":0}]},{"id":120,"code":"61680100031","title":"","description":"خرید بیل مکانیکی چرخ لاستیکی","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":10000000000,"provisioned":10000000000,"allocated":0,"remaining":10000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":10000000000,"provisioned":10000000000,"allocated":0}]},{"id":121,"code":"61680100032","title":"","description":"خرید غلطک خودرویی زیر سازی","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":10000000000,"provisioned":10000000000,"allocated":0,"remaining":10000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":10000000000,"provisioned":10000000000,"allocated":0}]},{"id":122,"code":"61680100033","title":"","description":"خرید وانت دوکابین","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":50000000000,"provisioned":50000000000,"allocated":0,"remaining":50000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":50000000000,"provisioned":50000000000,"allocated":0}]},{"id":123,"code":"61680100034","title":"","description":"خرید تراک میکسر بتن","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":10000000000,"provisioned":10000000000,"allocated":0,"remaining":10000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":10000000000,"provisioned":10000000000,"allocated":0}]},{"id":124,"code":"61680100035","title":"","description":"خرید جرثقیل 15 تن","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":10000000000,"provisioned":10000000000,"allocated":0,"remaining":10000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":10000000000,"provisioned":10000000000,"allocated":0}]},{"id":125,"code":"61680100036","title":"","description":"خرید جرثقیل 10 تن","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":10000000000,"provisioned":10000000000,"allocated":0,"remaining":10000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":10000000000,"provisioned":10000000000,"allocated":0}]},{"id":126,"code":"61680100038","title":"","description":"خرید کامیون کشنده","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":10000000000,"provisioned":10000000000,"allocated":0,"remaining":10000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":10000000000,"provisioned":10000000000,"allocated":0}]},{"id":127,"code":"61680100039","title":"","description":"خرید غلطک چرخ لاستیکی نه چرخ","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":10000000000,"provisioned":10000000000,"allocated":0,"remaining":10000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":10000000000,"provisioned":10000000000,"allocated":0}]},{"id":128,"code":"61680100040","title":"","description":"خرید دستگاه درزگیر","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":10000000000,"provisioned":10000000000,"allocated":0,"remaining":10000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":10000000000,"provisioned":10000000000,"allocated":0}]},{"id":129,"code":"61680200011","title":"","description":"خرید گاری کمرشکن","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":32500000000,"provisioned":30000000000,"allocated":0,"remaining":32500000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":32500000000,"provisioned":30000000000,"allocated":0}]},{"id":130,"code":"61680200012","title":"","description":"خرید گاری کفی","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":30000000000,"provisioned":30000000000,"allocated":0,"remaining":30000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":30000000000,"provisioned":30000000000,"allocated":0}]},{"id":131,"code":"61680400016","title":"","description":"خرید دستگاه وت پرس","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":200000000000,"provisioned":200000000000,"allocated":0,"remaining":200000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":200000000000,"provisioned":200000000000,"allocated":0}]},{"id":132,"code":"61680400017","title":"","description":"خرید دستگاه سنگ شکن","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":250000000000,"provisioned":250000000000,"allocated":0,"remaining":250000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":250000000000,"provisioned":250000000000,"allocated":0}]},{"id":133,"code":"61680400018","title":"","description":"تعمیر شبکه لوله کشی گاز کارخانه آسفالت","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":24000000000,"provisioned":0,"allocated":0,"remaining":24000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":24000000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":134,"code":"61680400019","title":"","description":"خرید کارخانه آسفالت و مخزن قیر","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":800000000000,"provisioned":400000000000,"allocated":0,"remaining":800000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":800000000000,"provisioned":400000000000,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]},{"id":135,"code":"61680400022","title":"","description":"خرید میکسر توئین شفت و سیلو مصالح سنگی","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":70000000000,"provisioned":70000000000,"allocated":0,"remaining":70000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":30000000000,"provisioned":30000000000,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":40000000000,"provisioned":40000000000,"allocated":0}]},{"id":136,"code":"61680400024","title":"","description":"احداث نیروگاه خورشیدی شهید مجیدی","beneficiary":"معاونت عمران،حمل و نقل و ترافیک","executor":"سازمان عمران","category":"تجهیزات و کالاهای اموالی","categoryKey":"equipment","approved":500000000000,"provisioned":0,"allocated":0,"remaining":500000000000,"absorption":0,"status":"مازاد آزاد","phases":[{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":500000000000,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0},{"approved":0,"provisioned":0,"allocated":0}]}],"phases":[{"index":1,"label":"سرفصل 1","provisioned":23752500000,"allocated":9415900000},{"index":2,"label":"سرفصل 2","provisioned":367378789170,"allocated":306743899358},{"index":3,"label":"سرفصل 3","provisioned":185710213224,"allocated":0},{"index":4,"label":"سرفصل 4","provisioned":0,"allocated":0},{"index":5,"label":"سرفصل 5","provisioned":75635482546,"allocated":75635482546},{"index":6,"label":"سرفصل 6","provisioned":0,"allocated":0},{"index":7,"label":"سرفصل 7","provisioned":0,"allocated":0},{"index":8,"label":"سرفصل 8","provisioned":15829846917,"allocated":8901536917},{"index":9,"label":"سرفصل 9","provisioned":9325856671599,"allocated":3545133288056},{"index":10,"label":"سرفصل 10","provisioned":88597957880,"allocated":48554807068},{"index":11,"label":"سرفصل 11","provisioned":430000000000,"allocated":0},{"index":12,"label":"سرفصل 12","provisioned":0,"allocated":0},{"index":13,"label":"سرفصل 13","provisioned":2830000000000,"allocated":0}],"categories":[{"name":"هزینه‌های جاری","key":"current","count":85,"approved":14944872036579,"provisioned":9417322001062,"allocated":3629670307519,"remaining":11315201729060,"absorption":0.242871},{"name":"اعتبارات تفویضی و عاملیت","key":"delegated","count":9,"approved":5761098893252,"provisioned":419765482891,"allocated":355298706426,"remaining":5405800186826,"absorption":0.061672},{"name":"درآمدهای سازمان","key":"income","count":9,"approved":11043722030298,"provisioned":11043722030298,"allocated":2890907306116,"remaining":8152814724182,"absorption":0.261769},{"name":"تجهیزات و کالاهای اموالی","key":"equipment","count":29,"approved":4410472408847,"provisioned":3388468164159,"allocated":9415900000,"remaining":4401056508847,"absorption":0.002135},{"name":"طبقه‌بندی نشده","key":"other","count":4,"approved":1440109281774,"provisioned":608654066412,"allocated":-288507241,"remaining":1440397789015,"absorption":-0.0002}],"statusDist":[{"name":"جذب مطلوب","count":24,"approved":671456547892,"provisioned":533413443585,"allocated":411025327615,"remaining":260431220277,"absorption":0.61214},{"name":"نزدیک به سقف","count":4,"approved":489037309881,"provisioned":488780992432,"allocated":465193612427,"remaining":23843697454,"absorption":0.951244},{"name":"مازاد آزاد","count":107,"approved":35948332539789,"provisioned":23364289055617,"allocated":6009073280019,"remaining":29939259259770,"absorption":0.167159},{"name":"نیازمند متمم","count":1,"approved":491448253188,"provisioned":491448253188,"allocated":-288507241,"remaining":491736760429,"absorption":-0.000587}],"alerts":[{"level":"critical","type":"انحراف منفی اعتبار","title":"انحراف منفی در ردیف 433020003","detail":"مازاد مصارف غیر نقدی (استهلاک و سنوات) — جذب -0.06٪ خارج از سقف مصوب","code":"433020003"},{"level":"warning","type":"نزدیک به سقف مصرف","title":"سقف مصرف ردیف 10430200027 در آستانه تکمیل","detail":"آماده سازی توقفگاه(جهت برگزاری مراسم تشییع قائد امت) — جذب 98.8٪ از اعتبار مصوب","code":"10430200027"},{"level":"warning","type":"نزدیک به سقف مصرف","title":"سقف مصرف ردیف 54110207002 در آستانه تکمیل","detail":"مزایای كاركنان مامور خدمت  در اختیار سازمان عمران — جذب 95.6٪ از اعتبار مصوب","code":"54110207002"},{"level":"warning","type":"نزدیک به سقف مصرف","title":"سقف مصرف ردیف 54110107002 در آستانه تکمیل","detail":"حقوق كاركنان مأمور به خدمت  در اختیار سازمان عمران — جذب 95.5٪ از اعتبار مصوب","code":"54110107002"},{"level":"warning","type":"نزدیک به سقف مصرف","title":"سقف مصرف ردیف 414010802 در آستانه تکمیل","detail":"منابع حاصل از فرآورده هاي بتني شهرداري — جذب 92.6٪ از اعتبار مصوب","code":"414010802"},{"level":"info","type":"اعتبار بدون تخصیص","title":"اعتبار بزرگ بدون تخصیص وجه — ردیف 10210200871","detail":"تامین آسفالت سطح شهر — مبلغ 2500.0 میلیارد ریال در انتظار تخصیص","code":"10210200871"},{"level":"info","type":"اعتبار بدون تخصیص","title":"اعتبار بزرگ بدون تخصیص وجه — ردیف 61680100026","detail":"خرید کامیون کمپرسی10 چرخ — مبلغ 2100.0 میلیارد ریال در انتظار تخصیص","code":"61680100026"},{"level":"info","type":"اعتبار بدون تخصیص","title":"اعتبار بزرگ بدون تخصیص وجه — ردیف 10220400158","detail":"تعمیرات  پل‌ها و زیرگذرهای عابر پیاده (توس 13،33،43،53،61،65،85، فردوسی 5،11،13،17 ، بلوار جانباز، بلوار فرامرز، خیام 52، فخر، فتح، میدان شهید فهمیده، کال حجت و فرامرز) — مبلغ 986.1 میلیارد ریال در انتظار تخصیص","code":"10220400158"},{"level":"info","type":"اعتبار بدون تخصیص","title":"اعتبار بزرگ بدون تخصیص وجه — ردیف 10210200772","detail":"خرید آسفالت معابر سطح شهر — مبلغ 840.0 میلیارد ریال در انتظار تخصیص","code":"10210200772"},{"level":"info","type":"اعتبار بدون تخصیص","title":"اعتبار بزرگ بدون تخصیص وجه — ردیف 61680400019","detail":"خرید کارخانه آسفالت و مخزن قیر — مبلغ 800.0 میلیارد ریال در انتظار تخصیص","code":"61680400019"},{"level":"info","type":"اعتبار بدون تخصیص","title":"اعتبار بزرگ بدون تخصیص وجه — ردیف 61680400024","detail":"احداث نیروگاه خورشیدی شهید مجیدی — مبلغ 500.0 میلیارد ریال در انتظار تخصیص","code":"61680400024"},{"level":"warning","type":"تسویه اسناد","title":"36 ردیف تامین‌شده بدون تخصیص وجه","detail":"اسناد تامین اعتبار صادر شده ولی هیچ تخصیص وجهی علیه آن‌ها ثبت نشده است","code":null},{"level":"info","type":"کد خارج از دسته‌بندی","title":"4 ردیف خارج از دسته‌بندی اعلامی کدهای بودجه","detail":"کدهای 10110900003، 433020003، 51310219582، 51320100064 با هیچ‌یک از پیشوندهای اعلامی (541، 102/104/412، 413/414/416/423، 616) منطبق نیستند و در بخش «طبقه‌بندی نشده» نمایش داده می‌شوند","code":null}]};
 </script>
+<script>window.BD_MOBILE=false;</script>
 <script>
 // ============================================================
 // پارسر اکسل اعتبار مصوب — نسخه تشخیص خودکار ساختار (همسان با اپ وب)
@@ -660,8 +712,10 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
     { key: 'delegated', name: 'اعتبارات تفویضی و عاملیت', color: '#10b981' },
     { key: 'income', name: 'درآمدهای سازمان', color: '#f59e0b' },
     { key: 'equipment', name: 'تجهیزات و کالاهای اموالی', color: '#a78bfa' },
-    { key: 'other', name: 'طبقه‌بندی نشده', color: '#94a3b8' }
+    { key: 'other', name: 'طبقه‌بندی نشده', color: '#c9a25e' }
   ];
+  // کرم — جایگزین طوسی روشن در نمودار دوناتی
+  var CREAM = '#eeddb8';
 
   var STATUS_META = {
     'جذب مطلوب': { bg: '#d1fae5', fg: '#065f46' },
@@ -814,6 +868,7 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
 
   window.BDShared = {
     CATEGORY_META: CATEGORY_META,
+    CREAM: CREAM,
     STATUS_META: STATUS_META,
     activeRows: activeRows,
     expenseRows: expenseRows,
@@ -829,16 +884,17 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
 </script>
 <script>
 // ============================================================
-// منطق داشبورد — تجمیع‌ها، قالب‌بندی، نمودارهای SVG، جداول، آپلود
+// منطق داشبورد — تجمیع‌ها، قالب‌بندی، نمودار سه‌بعدی، جداول، فیلتر
 // ============================================================
 (function () {
   'use strict';
   var P = window.BDParser;
-
-  // ---------- اتصال به لایه مشترک داده ----------
   var S = window.BDShared;
+  var IS_MOBILE = !!window.BD_MOBILE;
+
   var CATEGORY_META = S.CATEGORY_META;
   var STATUS_META = S.STATUS_META;
+  var CREAM = S.CREAM;
   var activeRows = S.activeRows;
   var expenseRows = S.expenseRows;
   var revenueRows = S.revenueRows;
@@ -869,9 +925,37 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
   }
   function $(id) { return document.getElementById(id); }
 
+  // ---------- فیلترهای وضعیت جذب ----------
+  var FILTERS = [
+    { key: '', label: 'همه ردیف‌ها' },
+    { key: 'near', label: 'نزدیک به سقف (جذب ۸۵٪ و بیشتر)' },
+    { key: 'good', label: 'جذب مطلوب (۴۰٪ تا ۸۵٪)' },
+    { key: 'ok', label: 'اعتبار کافی (جذب کمتر از ۴۰٪)' },
+    { key: 'fix', label: 'نیازمند اصلاح بودجه (انحراف)' },
+    { key: 'alloc', label: 'دارای تخصیص ثبت شده' },
+    { key: 'noalloc', label: 'بدون تخصیص' },
+    { key: 'nosup', label: 'بدون تامین اعتبار' }
+  ];
+  function filterMatches(r, f) {
+    if (!f) return true;
+    switch (f) {
+      case 'near': return r.absorption >= 0.85;
+      case 'good': return r.absorption >= 0.4 && r.absorption < 0.85;
+      case 'ok': return r.absorption < 0.4;
+      case 'fix': return r.status === 'نیازمند اصلاح بودجه';
+      case 'alloc': return r.allocated > 0;
+      case 'noalloc': return r.allocated === 0;
+      case 'nosup': return r.provisioned === 0;
+    }
+    return true;
+  }
+  // رنگ متن چیپ برای رنگ‌های روشن (کرم)
+  var CHIP_FG = { '#c9a25e': '#7a5c22' };
+  function chipFg(c) { return CHIP_FG[c] || c; }
+
   // ---------- وضعیت و ذخیره‌سازی ----------
   var LS_KEY = 'bd-offline-state-v1';
-  var state = { dataset: null, isDefault: true, savedAt: null, search: {}, expanded: {} };
+  var state = { dataset: null, isDefault: true, savedAt: null, search: {}, filter: {}, expanded: {} };
   function persist() {
     try {
       localStorage.setItem(LS_KEY, JSON.stringify({ dataset: state.dataset, isDefault: state.isDefault, savedAt: state.savedAt }));
@@ -922,23 +1006,49 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
       '</svg>';
   }
 
-  function donutSVG(slices, center1, center2) {
-    var R = 50, C = 2 * Math.PI * R;
-    var off = C * 0.25, svg = '';
-    slices.forEach(function (s) {
-      var frac = s.frac;
-      if (frac <= 0) return;
-      svg += '<circle r="' + R + '" cx="60" cy="60" fill="none" stroke="' + s.color + '" stroke-width="15" ' +
-        'stroke-dasharray="' + (C * frac).toFixed(2) + ' ' + (C - C * frac).toFixed(2) + '" ' +
-        'stroke-dashoffset="' + off.toFixed(2) + '" transform="rotate(-90 60 60)"/>';
-      off -= C * frac;
-    });
-    if (!slices.some(function (s) { return s.frac > 0; })) {
-      svg = '<circle r="' + R + '" cx="60" cy="60" fill="none" stroke="#e2e8f0" stroke-width="15"/>';
+  // ---------- دونات سه‌بعدی (شبه‌سه‌بعدی SVG) ----------
+  function shade(hex, f) {
+    var n = parseInt(hex.slice(1), 16);
+    var r = Math.round(((n >> 16) & 255) * f), g = Math.round(((n >> 8) & 255) * f), b = Math.round((n & 255) * f);
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  }
+  function donut3DSVG(slices, center1, center2) {
+    var W = 150, H = 106, cx = 75, cy = 50, rx = 52, ry = 33, irx = 29, iry = 18.4, dep = 12;
+    function pt(cy0, a, rX, rY) {
+      return [(cx + rX * Math.cos(a)).toFixed(2), (cy0 + rY * Math.sin(a)).toFixed(2)];
     }
-    return '<svg viewBox="0 0 120 120">' + svg +
-      '<text x="60" y="57" text-anchor="middle" font-size="14" font-weight="800" fill="#0f2042" font-family="inherit">' + esc(center1) + '</text>' +
-      '<text x="60" y="74" text-anchor="middle" font-size="8.5" fill="#64748b" font-family="inherit">' + esc(center2) + '</text></svg>';
+    function annulus(a1, a2, cy0, fill, stroke, label) {
+      var large = (a2 - a1) > Math.PI ? 1 : 0;
+      var o1 = pt(cy0, a1, rx, ry), o2 = pt(cy0, a2, rx, ry), i2 = pt(cy0, a2, irx, iry), i1 = pt(cy0, a1, irx, iry);
+      return '<path d="M' + o1[0] + ' ' + o1[1] + ' A' + rx + ' ' + ry + ' 0 ' + large + ' 1 ' + o2[0] + ' ' + o2[1] +
+        ' L' + i2[0] + ' ' + i2[1] + ' A' + irx + ' ' + iry + ' 0 ' + large + ' 0 ' + i1[0] + ' ' + i1[1] +
+        ' Z" fill="' + fill + '" stroke="' + stroke + '" stroke-width="0.6">' +
+        (label ? '<title>' + esc(label) + '</title>' : '') + '</path>';
+    }
+    var live = slices.filter(function (s) { return s.frac > 0.004; });
+    var svg = '';
+    if (!live.length) {
+      svg = annulus(-Math.PI / 2, Math.PI * 1.5, cy, '#e2e8f0', '#cbd5e1', '');
+    } else {
+      var tot = live.reduce(function (a, s) { return a + s.frac; }, 0) || 1;
+      var segs = [], ang = -Math.PI / 2;
+      live.forEach(function (s) {
+        var a2 = ang + (s.frac / tot) * 2 * Math.PI;
+        segs.push({ s: s, a1: ang, a2: a2 });
+        ang = a2;
+      });
+      // جداره پایینی (حجم سه‌بعدی)
+      segs.forEach(function (g) {
+        svg += annulus(g.a1, g.a2, cy + dep, shade(g.s.color, 0.6), shade(g.s.color, 0.48), g.s.name);
+      });
+      // رویه بالایی
+      segs.forEach(function (g) {
+        svg += annulus(g.a1, g.a2, cy, g.s.color, shade(g.s.color, 0.82), g.s.name);
+      });
+    }
+    return '<svg viewBox="0 0 ' + W + ' ' + H + '">' + svg +
+      '<text x="' + cx + '" y="' + (cy - 1) + '" text-anchor="middle" font-size="13" font-weight="800" fill="#0f2042" font-family="inherit">' + esc(center1) + '</text>' +
+      '<text x="' + cx + '" y="' + (cy + 13) + '" text-anchor="middle" font-size="7.8" fill="#64748b" font-family="inherit">' + esc(center2) + '</text></svg>';
   }
 
   function totalsChartSVG(t) {
@@ -1074,11 +1184,31 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
     var d = state.dataset;
     $('totalsChart').innerHTML = totalsChartSVG(d.totals);
     var expCats = d.categories.filter(function (c) { return c.key !== 'income'; });
-    var incCats = d.categories.filter(function (c) { return c.key === 'income'; });
-    var html = '';
-    if (expCats.length) html += groupedChartSVG(expCats, 'اعتبارات هزینه‌ای (بدون درآمدها)');
-    if (incCats.length) html += groupedChartSVG(incCats, 'درآمدهای سازمان — مقیاس مستقل');
-    $('catCharts').innerHTML = html;
+    $('catCharts').innerHTML = expCats.length
+      ? groupedChartSVG(expCats, 'اعتبارات هزینه‌ای (بدون درآمدها)')
+      : '<div class="note-strip">ردیف هزینه‌ای در دیتاست فعلی یافت نشد.</div>';
+  }
+
+  // ---------- بخش مجزای درآمدها (همیشه نمایان) ----------
+  function renderIncome() {
+    var d = state.dataset;
+    var inc = d.categories.filter(function (c) { return c.key === 'income'; })[0];
+    var box = $('incomeChart');
+    if (!inc || d.revenue.approved === 0 && d.revenue.provisioned === 0 && d.revenue.allocated === 0) {
+      box.innerHTML = '<div class="note-strip">در دیتاست فعلی ردیف درآمدی با پیشوندهای اعلامی (۴۱۳، ۴۱۴، ۴۱۶، ۴۲۳) شناسایی نشد. اگر کدهای درآمدی در دسته «طبقه‌بندی نشده» قرار دارند، از ستون «انتقال» جدول زیر به دسته درآمدها منتقل کنید.</div>';
+    } else {
+      box.innerHTML = '<div style="display:flex;gap:18px;flex-wrap:wrap;align-items:stretch;margin-top:12px">' +
+        '<div style="flex:1;min-width:290px">' + totalsChartSVG(d.revenue) + '</div>' +
+        '<div style="width:225px;flex:none;text-align:center;background:#fffbeb;border:1px solid #fde68a;border-radius:18px;padding:14px 10px;align-self:center">' +
+        '<div style="font-size:.74rem;font-weight:800;color:#92400e;margin-bottom:2px">جذب درآمدهای سازمان</div>' +
+        '<div style="font-size:.62rem;color:#a16207;margin-bottom:6px">بخش مجزا — بدون تجمیع با هزینه‌ها</div>' +
+        gaugeSVG(d.revenue.absorption, '#f59e0b') +
+        '<div style="font-size:.66rem;color:#57534e">مصوب: ' + compact(d.revenue.approved) + ' میلیارد ریال</div>' +
+        '<div style="font-size:.66rem;color:#57534e">تخصیص: ' + compact(d.revenue.allocated) + ' میلیارد ریال</div>' +
+        '<div style="font-size:.66rem;color:#57534e">' + toFa(revenueRows(d.rows).length) + ' ردیف درآمدی</div>' +
+        '</div></div>';
+    }
+    $('incomeTable').innerHTML = buildCatTable(CATEGORY_META.filter(function (m) { return m.key === 'income'; })[0]);
   }
 
   function renderDonuts() {
@@ -1094,20 +1224,19 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
       }).join('') + '</div>';
     $('overallDonut').innerHTML =
       '<div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">' +
-      '<div style="max-width:170px;flex:none">' + donutSVG(slices, 'مصوب کل', compact(totalApproved) + ' میلیارد') + '</div>' +
+      '<div style="max-width:200px;flex:none">' + donut3DSVG(slices, 'مصوب کل', compact(totalApproved) + ' میلیارد') + '</div>' +
       '<div style="flex:1;min-width:220px">' + legend + '</div></div>' +
       '<div class="note-strip">درآمدهای سازمان به‌عنوان برش مجزا نمایش داده می‌شوند و هرگز با اعتبارات هزینه‌ای تجمیع نمی‌گردند.</div>';
 
-    // دونات هر دسته — ترکیب جذب
+    // دونات سه‌بعدی هر دسته — ترکیب جذب (بدون تامین: کرم)
     $('catDonuts').innerHTML = d.categories.map(function (c) {
-      var alloc = Math.min(c.allocated, Math.max(c.allocated, 0));
       var suppliedNoAlloc = Math.max(0, Math.min(c.provisioned, c.approved) - Math.min(c.allocated, c.provisioned));
       var notSupplied = Math.max(0, c.approved - Math.min(c.provisioned, c.approved));
       var over = Math.max(0, c.provisioned - c.approved);
       var parts = [
         { color: '#10b981', frac: c.approved ? Math.max(0, Math.min(c.allocated, c.approved)) / c.approved : 0, l: 'تخصیص شده' },
         { color: '#38bdf8', frac: c.approved ? suppliedNoAlloc / c.approved : 0, l: 'تامین بدون تخصیص' },
-        { color: '#94a3b8', frac: c.approved ? notSupplied / c.approved : 0, l: 'بدون تامین' },
+        { color: CREAM, frac: c.approved ? notSupplied / c.approved : 0, l: 'بدون تامین' },
         { color: '#ef4444', frac: c.approved ? over / c.approved : 0, l: 'تامین مازاد بر مصوب' }
       ];
       var lg = '<div class="legend" style="justify-content:center;margin-top:6px;flex-direction:column;gap:3px;align-items:center;font-size:.6rem">' +
@@ -1115,7 +1244,7 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
           return '<span><i style="background:' + p.color + '"></i>' + esc(p.l) + ' ' + pct(p.frac, 0) + '</span>';
         }).join('') + '</div>';
       return '<div class="donut-card"><h4><i style="background:' + c.color + '"></i>' + esc(c.name) + '</h4>' +
-        donutSVG(parts, pct(c.absorption, 0), 'جذب') +
+        donut3DSVG(parts, pct(c.absorption, 0), 'جذب') +
         '<div class="d-sub num">مصوب: ' + compact(c.approved) + ' میلیارد</div>' + lg + '</div>';
     }).join('');
   }
@@ -1131,38 +1260,21 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
   }
 
   // ---------- جداول ----------
-  function tableRowsHtml(catKey, query) {
-    var d = state.dataset;
-    var rows = d.rows.filter(function (r) { return r.categoryKey === catKey && !r.deleted; });
-    if (query) {
-      var q = P.normText(query);
-      rows = rows.filter(function (r) {
-        return P.normText(r.code + ' ' + r.description + ' ' + r.beneficiary + ' ' + r.executor).indexOf(q) !== -1;
-      });
-    }
-    if (!rows.length) return '<tr><td colspan="7" style="text-align:center;color:#94a3b8;padding:18px">ردیفی یافت نشد</td></tr>';
-    return rows.map(function (r) {
-      var expanded = state.expanded[r.id];
-      var st = STATUS_META[r.status] || { bg: '#e2e8f0', fg: '#334155' };
-      var html = '<tr class="expandable" data-row="' + r.id + '">' +
-        '<td class="code-cell">' + esc(r.code) + '</td>' +
-        '<td style="min-width:220px">' + esc(r.description) + (r.beneficiary ? '<br><span style="font-size:.62rem;color:#94a3b8">' + esc(r.beneficiary) + '</span>' : '') + '</td>' +
-        '<td class="money">' + rial(r.approved) + '</td>' +
-        '<td class="money">' + rial(r.provisioned) + '</td>' +
-        '<td class="money">' + rial(r.allocated) + '</td>' +
-        '<td><span class="badge-st" style="background:' + st.bg + ';color:' + st.fg + '">' + esc(r.status) + '</span></td>' +
-        '<td><div class="mini-act">' + moveSelect(r) + '<button class="icon-btn" data-del="' + r.id + '" title="حذف کد بودجه">✕</button></div></td></tr>';
-      if (expanded) {
-        html += '<tr class="detail-row"><td colspan="7">' + phaseDetail(r) + '</td></tr>';
-      }
-      return html;
-    }).join('');
+  function rowsOf(catKey) {
+    return state.dataset.rows.filter(function (r) { return r.categoryKey === catKey && !r.deleted; });
+  }
+  function filteredRows(catKey) {
+    var q = P.normText(state.search[catKey] || ''), f = state.filter[catKey] || '';
+    return rowsOf(catKey).filter(function (r) {
+      if (f && !filterMatches(r, f)) return false;
+      if (q && P.normText(r.code + ' ' + r.description + ' ' + r.beneficiary + ' ' + r.executor).indexOf(q) === -1) return false;
+      return true;
+    });
   }
 
-  function moveSelect(r) {
-    var opts = CATEGORY_META.filter(function (m) { return m.key !== r.categoryKey; })
+  function moveOptions(r) {
+    return CATEGORY_META.filter(function (m) { return m.key !== r.categoryKey; })
       .map(function (m) { return '<option value="' + m.key + '">' + esc(m.name) + '</option>'; }).join('');
-    return '<select data-move="' + r.id + '"><option value="" disabled selected>انتقال به…</option>' + opts + '</select>';
   }
 
   function phaseDetail(r) {
@@ -1174,41 +1286,153 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
       }).join('') + '</tbody></table></div>';
   }
 
-  function renderTables() {
+  function tableRowsHtml(catKey) {
+    var rows = filteredRows(catKey);
+    var fActive = !!(state.filter[catKey] || state.search[catKey]);
+    if (!rows.length) return '<tr><td colspan="7" style="text-align:center;color:#94a3b8;padding:18px">' + (fActive ? 'ردیفی مطابق جستجو / فیلتر یافت نشد' : 'ردیفی یافت نشد') + '</td></tr>';
+    return rows.map(function (r) {
+      var expanded = state.expanded[r.id];
+      var st = STATUS_META[r.status] || { bg: '#e2e8f0', fg: '#334155' };
+      var html = '<tr class="expandable" data-row="' + r.id + '">' +
+        '<td class="code-cell">' + esc(r.code) + '</td>' +
+        '<td style="min-width:220px">' + esc(r.description) + (r.beneficiary ? '<br><span style="font-size:.62rem;color:#94a3b8">' + esc(r.beneficiary) + '</span>' : '') + '</td>' +
+        '<td class="money">' + rial(r.approved) + '</td>' +
+        '<td class="money">' + rial(r.provisioned) + '</td>' +
+        '<td class="money">' + rial(r.allocated) + '</td>' +
+        '<td><span class="badge-st" style="background:' + st.bg + ';color:' + st.fg + '">' + esc(r.status) + '</span></td>' +
+        '<td><div class="mini-act"><select data-move="' + r.id + '"><option value="" disabled selected>انتقال به…</option>' + moveOptions(r) + '</select>' +
+        '<button class="icon-btn" data-del="' + r.id + '" title="حذف کد بودجه">✕</button></div></td></tr>';
+      if (expanded) {
+        html += '<tr class="detail-row"><td colspan="7">' + phaseDetail(r) + '</td></tr>';
+      }
+      return html;
+    }).join('');
+  }
+
+  function footInner(catKey) {
+    var rows = filteredRows(catKey);
+    var agg = aggBlock(rows);
+    var live = rowsOf(catKey).length;
+    var filtered = !!(state.filter[catKey] || state.search[catKey]);
+    var label = filtered
+      ? 'جمع ردیف‌های نمایش‌داده‌شده (' + toFa(rows.length) + ' از ' + toFa(live) + ')'
+      : 'جمع ردیف‌های فعال (' + toFa(live) + ')';
+    return '<tr><td colspan="2">' + label + '</td><td class="money">' + rial(agg.approved) + '</td><td class="money">' + rial(agg.provisioned) + '</td><td class="money">' + rial(agg.allocated) + '</td><td colspan="2" style="font-size:.62rem;color:#64748b">برای نمایش سرفصل‌ها روی ردیف کلیک کنید</td></tr>';
+  }
+
+  function cardsHtml(catKey) {
+    var rows = filteredRows(catKey);
+    var fActive = !!(state.filter[catKey] || state.search[catKey]);
+    if (!rows.length) return '<div class="empty-card">' + (fActive ? 'ردیفی مطابق جستجو / فیلتر یافت نشد' : 'ردیفی یافت نشد') + '</div>';
+    return rows.map(function (r) {
+      var expanded = state.expanded[r.id];
+      var st = STATUS_META[r.status] || { bg: '#e2e8f0', fg: '#334155' };
+      return '<div class="row-card' + (expanded ? ' open' : '') + '" data-row="' + r.id + '">' +
+        '<div class="rc-head"><b class="rc-code">' + esc(r.code) + '</b><span class="badge-st" style="background:' + st.bg + ';color:' + st.fg + '">' + esc(r.status) + '</span></div>' +
+        '<div class="rc-desc">' + esc(r.description) + (r.beneficiary ? '<small>' + esc(r.beneficiary) + '</small>' : '') + '</div>' +
+        '<div class="rc-amts">' +
+        '<div><small>اعتبار مصوب</small><b class="num">' + rial(r.approved) + '</b></div>' +
+        '<div><small>تامین</small><b class="num">' + rial(r.provisioned) + '</b></div>' +
+        '<div><small>تخصیص</small><b class="num">' + rial(r.allocated) + '</b></div>' +
+        '<div><small>جذب</small><b class="num">' + pct(r.absorption, 0) + '</b></div>' +
+        '</div>' +
+        '<div class="rc-act">' +
+        '<button class="rc-expand" data-exp="' + r.id + '">' + (expanded ? 'بستن سرفصل‌ها ▴' : 'سرفصل‌ها ▾') + '</button>' +
+        '<select data-move="' + r.id + '"><option value="" disabled selected>انتقال به…</option>' + moveOptions(r) + '</select>' +
+        '<button class="icon-btn" data-del="' + r.id + '" title="حذف کد بودجه">✕</button>' +
+        '</div>' +
+        (expanded ? '<div class="rc-detail">' + phaseDetail(r) + '</div>' : '') +
+        '</div>';
+    }).join('');
+  }
+
+  function sumCardInner(catKey) {
+    var rows = filteredRows(catKey);
+    var agg = aggBlock(rows);
+    var live = rowsOf(catKey).length;
+    var filtered = !!(state.filter[catKey] || state.search[catKey]);
+    var label = filtered
+      ? 'جمع نمایش‌داده‌شده: ' + toFa(rows.length) + ' از ' + toFa(live) + ' ردیف'
+      : 'جمع ' + toFa(live) + ' ردیف فعال';
+    return '<div class="sc-label">' + label + '</div>' +
+      '<div class="sc-amts">' +
+      '<div><small>مصوب</small><b class="num">' + rial(agg.approved) + '</b></div>' +
+      '<div><small>تامین</small><b class="num">' + rial(agg.provisioned) + '</b></div>' +
+      '<div><small>تخصیص</small><b class="num">' + rial(agg.allocated) + '</b></div>' +
+      '</div>';
+  }
+
+  function renderTableBody(catKey) {
+    var el = document.querySelector('[data-list="' + catKey + '"]');
+    if (el) el.innerHTML = IS_MOBILE ? cardsHtml(catKey) : tableRowsHtml(catKey);
+    var ft = document.querySelector('[data-foot="' + catKey + '"]');
+    if (ft) ft.innerHTML = IS_MOBILE ? sumCardInner(catKey) : footInner(catKey);
+  }
+
+  function filterSelect(catKey) {
+    var cur = state.filter[catKey] || '';
+    return '<select class="filter-sel" data-filter="' + catKey + '" title="فیلتر ردیف‌ها بر اساس وضعیت جذب">' +
+      FILTERS.map(function (f) {
+        return '<option value="' + f.key + '"' + (f.key === cur ? ' selected' : '') + '>' + esc(f.label) + '</option>';
+      }).join('') + '</select>';
+  }
+
+  function exportGroup(catKey) {
+    return '<div class="export-group">' +
+      '<button class="exp-btn xls" data-xls="' + catKey + '" title="خروجی اکسل این جدول">اکسل</button>' +
+      '<button class="exp-btn pdf" data-pdf="' + catKey + '" title="چاپ / ذخیره PDF این جدول">PDF</button>' +
+      '<button class="exp-btn jpg" data-jpg="' + catKey + '" title="خروجی تصویر JPG این جدول">JPG</button>' +
+      '</div>';
+  }
+
+  function buildCatTable(m) {
     var d = state.dataset;
-    var box = $('catTables');
+    var all = d.rows.filter(function (r) { return r.categoryKey === m.key; });
+    var live = all.filter(function (r) { return !r.deleted; });
+    var deleted = all.filter(function (r) { return r.deleted; });
+    var tools = '<div class="table-tools print-hide">' +
+      '<span class="count" style="background:' + m.color + '22;color:' + chipFg(m.color) + ';border:1px solid ' + m.color + '55">' + esc(m.name) + ' — ' + toFa(live.length) + ' ردیف</span>' +
+      '<div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>' +
+      '<input type="search" data-search="' + m.key + '" placeholder="جستجو در ' + esc(m.name) + ' (کد، شرح، دستگاه…)" value="' + esc(state.search[m.key] || '') + '"></div>' +
+      filterSelect(m.key) + exportGroup(m.key) +
+      '</div>';
+    var list, foot = '';
+    if (IS_MOBILE) {
+      list = '<div class="cards" data-list="' + m.key + '">' + cardsHtml(m.key) + '</div>';
+      foot = '<div class="sum-card" data-foot="' + m.key + '">' + sumCardInner(m.key) + '</div>';
+    } else {
+      list = '<div class="tbl-wrap"><table><thead><tr>' +
+        '<th>کد بودجه مصوب</th><th>شرح اعتبار مصوب</th><th>اعتبار مصوب (ریال)</th><th>تامین اعتبار ثبت شده (ریال)</th><th>تخصیص ثبت شده (ریال)</th><th>وضعیت</th><th>انتقال / حذف</th>' +
+        '</tr></thead><tbody data-list="' + m.key + '">' + tableRowsHtml(m.key) + '</tbody>' +
+        '<tfoot data-foot="' + m.key + '">' + footInner(m.key) + '</tfoot></table></div>';
+    }
+    var emptyNote = !live.length
+      ? '<div class="note-strip">هیچ ردیف فعالی در این دسته وجود ندارد' + (m.key === 'income' ? ' — ردیف‌های درآمدی با پیشوندهای ۴۱۳/۴۱۴/۴۱۶/۴۲۳ شناسایی می‌شوند؛ در صورت نیاز از ستون «انتقال» جدول «طبقه‌بندی نشده» به این دسته منتقلشان کنید.' : '') + '</div>'
+      : '';
+    var delHtml = '';
+    if (deleted.length) {
+      delHtml = '<div class="deleted-block print-hide"><h5>ردیف‌های حذف‌شده این دسته (' + toFa(deleted.length) + ')</h5>' +
+        deleted.map(function (r) {
+          return '<div class="deleted-item"><b>' + esc(r.code) + '</b><span>' + esc(r.description) + '</span>' +
+            '<button class="icon-btn restore" data-restore="' + r.id + '" title="بازگردانی">↺</button></div>';
+        }).join('') +
+        '<div style="margin-top:8px"><button class="btn" style="background:#ecfdf5;border-color:#bbe9d5;color:#059669;font-size:.68rem;padding:6px 12px" data-restore-cat="' + m.key + '">بازگردانی همه ردیف‌های این دسته</button></div></div>';
+    }
+    return '<div class="cat-table" id="cat-' + m.key + '">' + tools + emptyNote + list + foot + delHtml + '</div>';
+  }
+
+  function renderTables() {
     var html = '';
     CATEGORY_META.forEach(function (m) {
-      var all = d.rows.filter(function (r) { return r.categoryKey === m.key; });
-      var live = all.filter(function (r) { return !r.deleted; });
-      var deleted = all.filter(function (r) { return r.deleted; });
+      if (m.key === 'income') return; // درآمدها در بخش مجزای «گزارش درآمدها»
+      var all = state.dataset.rows.filter(function (r) { return r.categoryKey === m.key; });
       if (!all.length) return;
-      var agg = aggBlock(live);
-      html += '<div class="cat-table">' +
-        '<div class="table-tools">' +
-        '<span class="count" style="background:' + m.color + '22;color:' + m.color + ';border:1px solid ' + m.color + '55">' + esc(m.name) + ' — ' + toFa(live.length) + ' ردیف</span>' +
-        '<div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>' +
-        '<input type="search" data-search="' + m.key + '" placeholder="جستجو در ' + esc(m.name) + ' (کد، شرح، دستگاه…)" value="' + esc(state.search[m.key] || '') + '"></div>' +
-        '</div>' +
-        '<div class="tbl-wrap"><table><thead><tr>' +
-        '<th>کد بودجه مصوب</th><th>شرح اعتبار مصوب</th><th>اعتبار مصوب (ریال)</th><th>تامین اعتبار ثبت شده (ریال)</th><th>تخصیص ثبت شده (ریال)</th><th>وضعیت</th><th>انتقال / حذف</th>' +
-        '</tr></thead><tbody data-tbody="' + m.key + '">' + tableRowsHtml(m.key, state.search[m.key] || '') + '</tbody>' +
-        '<tfoot><tr><td colspan="2">جمع ردیف‌های فعال</td><td class="money">' + rial(agg.approved) + '</td><td class="money">' + rial(agg.provisioned) + '</td><td class="money">' + rial(agg.allocated) + '</td><td colspan="2" style="font-size:.62rem;color:#64748b">برای نمایش سرفصل‌ها روی ردیف کلیک کنید</td></tr></tfoot>' +
-        '</table></div>';
-      if (deleted.length) {
-        html += '<div class="deleted-block"><h5>ردیف‌های حذف‌شده این دسته (' + toFa(deleted.length) + ')</h5>' +
-          deleted.map(function (r) {
-            return '<div class="deleted-item"><b>' + esc(r.code) + '</b><span>' + esc(r.description) + '</span>' +
-              '<button class="icon-btn restore" data-restore="' + r.id + '" title="بازگردانی">↺</button></div>';
-          }).join('') +
-          '<div style="margin-top:8px"><button class="btn" style="background:#ecfdf5;border-color:#bbe9d5;color:#059669;font-size:.68rem;padding:6px 12px" data-restore-cat="' + m.key + '">بازگردانی همه ردیف‌های این دسته</button></div></div>';
-      }
-      html += '</div>';
+      html += buildCatTable(m);
     });
-    box.innerHTML = html;
+    $('catTables').innerHTML = html;
 
     var strip = $('mgmtStrip');
-    strip.innerHTML = hasManualEdits(d.rows)
+    strip.innerHTML = hasManualEdits(state.dataset.rows)
       ? '<button class="btn" style="background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.4);color:#fde68a;font-size:.7rem;padding:7px 13px" id="resetEdits">↺ بازنشانی همه تغییرات دسته‌بندی</button>'
       : '<span style="font-size:.66rem;color:#94a3b8">تغییر دسته‌بندی کدها از ستون «انتقال / حذف» هر جدول انجام می‌شود</span>';
   }
@@ -1219,6 +1443,7 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
     renderBanner();
     renderKpis();
     renderCharts();
+    renderIncome();
     renderDonuts();
     renderAlerts();
     renderTables();
@@ -1229,6 +1454,7 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
     state.dataset = normalizeDataset(dataset);
     state.isDefault = isDefault;
     state.search = {};
+    state.filter = {};
     state.expanded = {};
     persist();
     renderAll();
@@ -1268,7 +1494,7 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
   }
 
   // ---------- آپلود / حذف فایل ----------
-  var DEFAULT_DATA = null; // در init مقداردهی می‌شود
+  var DEFAULT_DATA = null;
   var busy = false;
 
   function handleFile(file) {
@@ -1314,7 +1540,7 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
     toast('فایل بارگذاری‌شده حذف شد', 'داده‌های پیش‌فرض «اعتبار مصوب ۱۴۰۵» بازیابی شد');
   }
 
-  // ---------- خروجی اکسل ----------
+  // ---------- خروجی اکسل گزارش تلفیقی ----------
   function exportReport() {
     var d = state.dataset;
     var header = ['کد بودجه مصوب', 'شرح اعتبار مصوب', 'عنوان دستگاه بهره بردار', 'عنوان دستگاه اجرایی', 'اعتبار مصوب (ریال)', 'تامین اعتبار ثبت شده (ریال)', 'تخصیص ثبت شده (ریال)', 'درصد جذب', 'وضعیت'];
@@ -1334,6 +1560,15 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
     XLSX.utils.book_append_sheet(wb, sheetFor(revenueRows(d.rows), 'درآمدی'), 'درآمدهای سازمان');
     XLSX.writeFile(wb, 'گزارش-تلفیقی-اعتبارات-' + d.meta.fiscalYear + '.xlsx');
     toast('گزارش تلفیقی تهیه شد', 'دو برگه: اعتبارات هزینه‌ای و درآمدهای سازمان (مجزا)');
+  }
+
+  // ---------- خروجی‌های جدول ----------
+  function onExport(kind, catKey) {
+    var E = window.BDExport;
+    if (!E) { toast('ماژول خروجی بارگذاری نشده است', '', true); return; }
+    if (kind === 'xls') E.exportXLS(catKey);
+    else if (kind === 'pdf') E.printTable(catKey);
+    else if (kind === 'jpg') E.exportJPG(catKey);
   }
 
   // ---------- رویدادها ----------
@@ -1362,34 +1597,56 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
     document.addEventListener('drop', function (e) { e.preventDefault(); });
 
     // جداول — جستجو
-    $('catTables').addEventListener('input', function (e) {
+    document.body.addEventListener('input', function (e) {
       var key = e.target.getAttribute && e.target.getAttribute('data-search');
       if (!key) return;
       state.search[key] = e.target.value;
-      var tbody = document.querySelector('[data-tbody="' + key + '"]');
-      if (tbody) tbody.innerHTML = tableRowsHtml(key, e.target.value);
+      renderTableBody(key);
     });
-    // جداول — بازکردن سرفصل‌ها
-    $('catTables').addEventListener('click', function (e) {
-      var del = e.target.closest && e.target.closest('[data-del]');
-      if (del) { doDelete(+del.getAttribute('data-del')); return; }
-      var res = e.target.closest && e.target.closest('[data-restore]');
-      if (res) { doRestore(+res.getAttribute('data-restore')); return; }
-      var resc = e.target.closest && e.target.closest('[data-restore-cat]');
-      if (resc) { doRestoreCat(resc.getAttribute('data-restore-cat')); return; }
-      if (e.target.closest && e.target.closest('select,button,input')) return;
-      var tr = e.target.closest && e.target.closest('tr.expandable');
-      if (tr) {
-        var id = +tr.getAttribute('data-row');
-        state.expanded[id] = !state.expanded[id];
-        var key = tr.closest('[data-tbody]').getAttribute('data-tbody');
-        var tbody = document.querySelector('[data-tbody="' + key + '"]');
-        if (tbody) tbody.innerHTML = tableRowsHtml(key, state.search[key] || '');
+    // جداول — فیلتر وضعیت جذب + انتقال
+    document.body.addEventListener('change', function (e) {
+      var filt = e.target.closest && e.target.closest('[data-filter]');
+      if (filt) {
+        var fk = filt.getAttribute('data-filter');
+        state.filter[fk] = filt.value;
+        renderTableBody(fk);
+        return;
       }
-    });
-    $('catTables').addEventListener('change', function (e) {
       var sel = e.target.closest && e.target.closest('[data-move]');
       if (sel && sel.value) doMove(+sel.getAttribute('data-move'), sel.value);
+    });
+    // جداول — اقدامات و بازکردن سرفصل‌ها
+    document.body.addEventListener('click', function (e) {
+      var t = e.target;
+      var xls = t.closest && t.closest('[data-xls]');
+      if (xls) { onExport('xls', xls.getAttribute('data-xls')); return; }
+      var pdf = t.closest && t.closest('[data-pdf]');
+      if (pdf) { onExport('pdf', pdf.getAttribute('data-pdf')); return; }
+      var jpg = t.closest && t.closest('[data-jpg]');
+      if (jpg) { onExport('jpg', jpg.getAttribute('data-jpg')); return; }
+      var del = t.closest && t.closest('[data-del]');
+      if (del) { doDelete(+del.getAttribute('data-del')); return; }
+      var res = t.closest && t.closest('[data-restore]');
+      if (res) { doRestore(+res.getAttribute('data-restore')); return; }
+      var resc = t.closest && t.closest('[data-restore-cat]');
+      if (resc) { doRestoreCat(resc.getAttribute('data-restore-cat')); return; }
+      // دکمه سرفصل‌ها در نمای کارتی موبایل
+      var expBtn = t.closest && t.closest('[data-exp]');
+      if (expBtn) {
+        var eid = +expBtn.getAttribute('data-exp');
+        state.expanded[eid] = !state.expanded[eid];
+        var expList = expBtn.closest('[data-list]');
+        if (expList) renderTableBody(expList.getAttribute('data-list'));
+        return;
+      }
+      if (t.closest && t.closest('select,button,input,a')) return;
+      var card = t.closest && t.closest('tr.expandable, .row-card');
+      if (card) {
+        var id = +card.getAttribute('data-row');
+        state.expanded[id] = !state.expanded[id];
+        var listEl = card.closest('[data-list]');
+        if (listEl) renderTableBody(listEl.getAttribute('data-list'));
+      }
     });
     $('mgmtStrip').addEventListener('click', function (e) {
       if (e.target.closest && e.target.closest('#resetEdits')) doReset();
@@ -1413,6 +1670,306 @@ window.BD_DEFAULT_DATA = {"meta":{"fiscalYear":1405,"orgTitle":"سازمان ع�
   }
 
   document.addEventListener('DOMContentLoaded', init);
+
+  // ---------- اتصال برای ماژول خروجی ----------
+  window.BDApp = {
+    state: state,
+    IS_MOBILE: IS_MOBILE,
+    CATEGORY_META: CATEGORY_META,
+    STATUS_META: STATUS_META,
+    CREAM: CREAM,
+    filteredRows: filteredRows,
+    rowsOf: rowsOf,
+    aggBlock: aggBlock,
+    expenseRows: expenseRows,
+    revenueRows: revenueRows,
+    activeRows: activeRows,
+    rial: rial,
+    rialTxt: rialTxt,
+    compact: compact,
+    billions: billions,
+    pct: pct,
+    toFa: toFa,
+    esc: esc,
+    $: $,
+    toast: toast
+  };
+})();
+
+</script>
+<script>
+// ============================================================
+// ماژول خروجی جداول — اکسل، چاپ/PDF، تصویر JPG (کاملاً محلی)
+// ============================================================
+(function () {
+  'use strict';
+  var A = window.BDApp;
+  if (!A) return;
+
+  function metaOf(key) {
+    return A.CATEGORY_META.filter(function (m) { return m.key === key; })[0];
+  }
+  function safeName(s) { return String(s).replace(/[\\/:*?"<>| ]+/g, '-'); }
+
+  // ================= اکسل =================
+  function exportXLS(catKey) {
+    var rows = A.filteredRows(catKey);
+    if (!rows.length) { A.toast('ردیفی برای خروجی وجود ندارد', 'ابتدا فیلتر یا جستجو را تغییر دهید', true); return; }
+    var m = metaOf(catKey);
+    var d = A.state.dataset;
+    var aoa = [
+      ['گزارش تفصیلی — ' + m.name],
+      ['سال مالی: ' + A.toFa(d.meta.fiscalYear) + ' — منبع: ' + (A.state.isDefault ? 'دیتاست پیش‌فرض' : d.meta.sourceFile) + ' — تاریخ گزارش: ' + A.toFa(new Date().toLocaleDateString('fa-IR'))],
+      []
+    ];
+    aoa.push(['ردیف', 'کد بودجه مصوب', 'شرح اعتبار مصوب', 'عنوان دستگاه بهره بردار', 'عنوان دستگاه اجرایی', 'اعتبار مصوب (ریال)', 'تامین اعتبار ثبت شده (ریال)', 'تخصیص ثبت شده (ریال)', 'درصد جذب', 'وضعیت']);
+    rows.forEach(function (r, i) {
+      aoa.push([i + 1, r.code, r.description, r.beneficiary, r.executor, r.approved, r.provisioned, r.allocated, +(r.absorption * 100).toFixed(2), r.status]);
+    });
+    var agg = A.aggBlock(rows);
+    aoa.push(['', 'جمع', '', '', '', agg.approved, agg.provisioned, agg.allocated, +(agg.absorption * 100).toFixed(2), '']);
+    var ws = XLSX.utils.aoa_to_sheet(aoa);
+    ws['!cols'] = [{ wch: 6 }, { wch: 14 }, { wch: 46 }, { wch: 26 }, { wch: 22 }, { wch: 20 }, { wch: 20 }, { wch: 20 }, { wch: 9 }, { wch: 20 }];
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'گزارش');
+    XLSX.writeFile(wb, 'گزارش-' + safeName(m.name) + '-' + d.meta.fiscalYear + '.xlsx');
+    A.toast('خروجی اکسل آماده شد', A.toFa(rows.length) + ' ردیف «' + m.name + '» (مطابق فیلتر فعال)');
+  }
+
+  // ================= چاپ / PDF =================
+  var lastPrint = 0;
+  function printTable(catKey) {
+    var now = Date.now();
+    if (now - lastPrint < 900) return; // جلوگیری از بازشدن مضاعف پنجره چاپ
+    lastPrint = now;
+    var rows = A.filteredRows(catKey);
+    if (!rows.length) { A.toast('ردیفی برای چاپ وجود ندارد', 'ابتدا فیلتر یا جستجو را تغییر دهید', true); return; }
+    var m = metaOf(catKey);
+    var d = A.state.dataset;
+    var agg = A.aggBlock(rows);
+    var el = A.$('printArea');
+    el.innerHTML =
+      '<div class="p-title">گزارش تفصیلی — ' + A.esc(m.name) + '</div>' +
+      '<div class="p-sub">سال مالی ' + A.toFa(d.meta.fiscalYear) + ' — منبع: ' + A.esc(A.state.isDefault ? 'دیتاست پیش‌فرض ' + A.toFa(d.meta.fiscalYear) : d.meta.sourceFile) +
+      ' — تعداد ردیف: ' + A.toFa(rows.length) + ' — تاریخ گزارش: ' + A.toFa(new Date().toLocaleDateString('fa-IR')) + '</div>' +
+      '<table><thead><tr><th style="width:5%">ردیف</th><th style="width:11%">کد بودجه</th><th style="width:30%">شرح اعتبار مصوب</th><th style="width:15%">اعتبار مصوب (ریال)</th><th style="width:14%">تامین اعتبار (ریال)</th><th style="width:14%">تخصیص (ریال)</th><th style="width:5%">جذب</th><th style="width:12%">وضعیت</th></tr></thead><tbody>' +
+      rows.map(function (r, i) {
+        return '<tr><td>' + A.toFa(i + 1) + '</td><td>' + A.esc(r.code) + '</td><td>' + A.esc(r.description) + '</td><td>' + A.rial(r.approved) + '</td><td>' + A.rial(r.provisioned) + '</td><td>' + A.rial(r.allocated) + '</td><td>' + A.pct(r.absorption, 0) + '</td><td>' + A.esc(r.status) + '</td></tr>';
+      }).join('') +
+      '</tbody><tfoot><tr><td colspan="3">جمع</td><td>' + A.rial(agg.approved) + '</td><td>' + A.rial(agg.provisioned) + '</td><td>' + A.rial(agg.allocated) + '</td><td>' + A.pct(agg.absorption, 0) + '</td><td></td></tr></tfoot></table>' +
+      '<div class="p-foot">داشبورد پایش اعتبارات و بودجه سازمانی — واحد برنامه ریزی — گزارش به‌صورت کاملاً محلی تولید شده است</div>';
+    A.toast('پنجره چاپ باز می‌شود', 'برای دریافت PDF گزینه «Save as PDF» را انتخاب کنید');
+    setTimeout(function () { window.print(); }, 250);
+  }
+
+  // ================= تصویر JPG (رندر کنواس) =================
+  function loadFonts() {
+    var specs = ['800 20px Vazirmatn', '700 13.5px Vazirmatn', '600 12.5px Vazirmatn', '400 13px Vazirmatn', '400 12px Vazirmatn'];
+    if (!document.fonts || !document.fonts.load) return Promise.resolve();
+    return Promise.all(specs.map(function (s) {
+      try { return document.fonts.load(s, 'آب۱۲۳'); } catch (e) { return Promise.resolve(); }
+    })).catch(function () { });
+  }
+
+  function wrapText(ctx, text, maxW, maxLines) {
+    var words = String(text || '').split(/\s+/).filter(Boolean);
+    var lines = [], cur = '', i = 0;
+    for (i = 0; i < words.length; i++) {
+      var t = cur ? cur + ' ' + words[i] : words[i];
+      if (ctx.measureText(t).width <= maxW || !cur) cur = t;
+      else {
+        lines.push(cur); cur = words[i];
+        if (lines.length === maxLines) break;
+      }
+    }
+    if (cur && lines.length < maxLines) lines.push(cur);
+    if (lines.length === maxLines && i < words.length) {
+      var last = lines[maxLines - 1];
+      while (ctx.measureText(last + '…').width > maxW && last.length > 2) last = last.slice(0, -1);
+      lines[maxLines - 1] = last + '…';
+    }
+    return lines.length ? lines : ['—'];
+  }
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  function absorptionColor(f) {
+    if (f < 0) return '#dc2626';
+    if (f >= 0.85) return '#b45309';
+    if (f >= 0.4) return '#047857';
+    return '#0284c7';
+  }
+
+  function exportJPG(catKey) {
+    var rows = A.filteredRows(catKey);
+    if (!rows.length) { A.toast('ردیفی برای خروجی تصویر وجود ندارد', 'ابتدا فیلتر یا جستجو را تغییر دهید', true); return; }
+    var m = metaOf(catKey);
+    var d = A.state.dataset;
+    loadFonts().then(function () {
+      var W = A.IS_MOBILE ? 1080 : 1560;
+      var sc = 2, M = 26;
+      var cols = [
+        { w: 50, t: '#' },
+        { w: 126, t: 'کد بودجه' },
+        { w: 0, t: 'شرح اعتبار مصوب', flex: true },
+        { w: 198, t: 'اعتبار مصوب (ریال)' },
+        { w: 198, t: 'تامین اعتبار (ریال)' },
+        { w: 198, t: 'تخصیص (ریال)' },
+        { w: 80, t: 'جذب' },
+        { w: 152, t: 'وضعیت' }
+      ];
+      var fixedSum = cols.reduce(function (a, c) { return a + (c.flex ? 0 : c.w); }, 0);
+      var flexW = W - 2 * M - fixedSum;
+      if (flexW < 320) { W += (320 - flexW); flexW = 320; }
+      cols.forEach(function (c) { if (c.flex) c.w = flexW; });
+
+      // اندازه‌گیری اولیه
+      var cv = document.createElement('canvas');
+      var ctx = cv.getContext('2d');
+      ctx.font = '400 13px Vazirmatn';
+      var rowLines = [], rowHs = [];
+      rows.forEach(function (r) {
+        var lines = wrapText(ctx, r.description, flexW - 16, 2);
+        rowLines.push(lines);
+        rowHs.push(Math.max(38, 16 + lines.length * 17));
+      });
+      var titleH = 84, headH = 44, footRowH = 46, footerH = 40;
+      var tableH = headH + rowHs.reduce(function (a, b) { return a + b; }, 0) + footRowH;
+      var H = M + titleH + tableH + footerH + M;
+
+      cv.width = W * sc; cv.height = H * sc;
+      ctx = cv.getContext('2d');
+      ctx.scale(sc, sc);
+      try { ctx.direction = 'rtl'; } catch (e) { }
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, W, H);
+
+      // --- سرصفحه ---
+      var y = M;
+      ctx.fillStyle = '#14532d';
+      ctx.font = '800 20px Vazirmatn';
+      ctx.textAlign = 'right';
+      ctx.fillText('گزارش تفصیلی — ' + m.name, W - M, y + 22);
+      ctx.fillStyle = '#64748b';
+      ctx.font = '400 12.5px Vazirmatn';
+      ctx.fillText('سال مالی ' + A.toFa(d.meta.fiscalYear) + ' — منبع: ' + (A.state.isDefault ? 'دیتاست پیش‌فرض ' + A.toFa(d.meta.fiscalYear) : d.meta.sourceFile) + ' — تعداد ردیف: ' + A.toFa(rows.length) + ' — تاریخ: ' + A.toFa(new Date().toLocaleDateString('fa-IR')), W - M, y + 50);
+      // نشان واحد
+      ctx.font = '700 11.5px Vazirmatn';
+      var bw = ctx.measureText('واحد برنامه ریزی').width + 22;
+      ctx.fillStyle = '#ecfdf5';
+      roundRect(ctx, M, y + 8, bw, 26, 13); ctx.fill();
+      ctx.strokeStyle = '#b7e4cf'; ctx.stroke();
+      ctx.fillStyle = '#047857';
+      ctx.textAlign = 'center';
+      ctx.fillText('واحد برنامه ریزی', M + bw / 2, y + 21);
+      y += titleH;
+
+      // --- مختصات ستون‌ها (راست به چپ) ---
+      var xs = [], x = W - M;
+      cols.forEach(function (c) { xs.push({ x1: x - c.w, x2: x }); x -= c.w; });
+      var tblLeft = M, tblW = W - 2 * M;
+
+      // --- سرتیتر (سبز تیره) ---
+      ctx.fillStyle = '#14532d';
+      ctx.fillRect(tblLeft, y, tblW, headH);
+      ctx.fillStyle = '#f2fbf5';
+      ctx.font = '700 13.5px Vazirmatn';
+      ctx.textAlign = 'center';
+      cols.forEach(function (c, i) {
+        ctx.fillText(c.t, (xs[i].x1 + xs[i].x2) / 2, y + headH / 2 + 1);
+      });
+      y += headH;
+
+      // --- ردیف‌ها ---
+      rows.forEach(function (r, i) {
+        var h = rowHs[i];
+        if (i % 2 === 1) { ctx.fillStyle = '#f6faf7'; ctx.fillRect(tblLeft, y, tblW, h); }
+        ctx.strokeStyle = '#e5ece7';
+        ctx.beginPath(); ctx.moveTo(tblLeft, y + h); ctx.lineTo(tblLeft + tblW, y + h); ctx.stroke();
+
+        // ردیف
+        ctx.fillStyle = '#94a3b8'; ctx.font = '400 12px Vazirmatn'; ctx.textAlign = 'center';
+        ctx.fillText(A.toFa(i + 1), (xs[0].x1 + xs[0].x2) / 2, y + h / 2);
+        // کد
+        try { ctx.direction = 'ltr'; } catch (e) { }
+        ctx.fillStyle = '#0f2042'; ctx.font = '800 13px Vazirmatn';
+        ctx.fillText(r.code, (xs[1].x1 + xs[1].x2) / 2, y + h / 2);
+        try { ctx.direction = 'rtl'; } catch (e) { }
+        // شرح (چند خطی)
+        ctx.fillStyle = '#1e293b'; ctx.font = '400 13px Vazirmatn'; ctx.textAlign = 'right';
+        var lines = rowLines[i];
+        lines.forEach(function (ln, li) {
+          var ly = y + h / 2 + (li - (lines.length - 1) / 2) * 17;
+          ctx.fillText(ln, xs[2].x2 - 8, ly);
+        });
+        // مبالغ
+        ctx.textAlign = 'center'; ctx.font = '600 12.5px Vazirmatn'; ctx.fillStyle = '#1e293b';
+        ctx.fillText(A.rial(r.approved), (xs[3].x1 + xs[3].x2) / 2, y + h / 2);
+        ctx.fillText(A.rial(r.provisioned), (xs[4].x1 + xs[4].x2) / 2, y + h / 2);
+        ctx.fillText(A.rial(r.allocated), (xs[5].x1 + xs[5].x2) / 2, y + h / 2);
+        // جذب
+        ctx.fillStyle = absorptionColor(r.absorption);
+        ctx.fillText(A.pct(r.absorption, 0), (xs[6].x1 + xs[6].x2) / 2, y + h / 2);
+        // وضعیت (بج)
+        var stMeta = A.STATUS_META[r.status] || { bg: '#e2e8f0', fg: '#334155' };
+        ctx.font = '700 11.5px Vazirmatn';
+        var tw = ctx.measureText(r.status).width + 18;
+        ctx.fillStyle = stMeta.bg;
+        roundRect(ctx, (xs[7].x1 + xs[7].x2) / 2 - tw / 2, y + h / 2 - 10, tw, 20, 10); ctx.fill();
+        ctx.fillStyle = stMeta.fg;
+        ctx.fillText(r.status, (xs[7].x1 + xs[7].x2) / 2, y + h / 2 + 1);
+
+        y += h;
+      });
+
+      // --- ردیف جمع ---
+      var agg = A.aggBlock(rows);
+      ctx.fillStyle = '#eaf5ee';
+      ctx.fillRect(tblLeft, y, tblW, footRowH);
+      ctx.strokeStyle = '#14532d';
+      ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.moveTo(tblLeft, y); ctx.lineTo(tblLeft + tblW, y); ctx.stroke();
+      ctx.lineWidth = 1;
+      ctx.fillStyle = '#14532d'; ctx.font = '800 13px Vazirmatn'; ctx.textAlign = 'right';
+      ctx.fillText('جمع (' + A.toFa(rows.length) + ' ردیف)', xs[2].x2 - 8, y + footRowH / 2);
+      ctx.textAlign = 'center';
+      ctx.fillText(A.rial(agg.approved), (xs[3].x1 + xs[3].x2) / 2, y + footRowH / 2);
+      ctx.fillText(A.rial(agg.provisioned), (xs[4].x1 + xs[4].x2) / 2, y + footRowH / 2);
+      ctx.fillText(A.rial(agg.allocated), (xs[5].x1 + xs[5].x2) / 2, y + footRowH / 2);
+      ctx.fillText(A.pct(agg.absorption, 0), (xs[6].x1 + xs[6].x2) / 2, y + footRowH / 2);
+      y += footRowH;
+
+      // --- پانویس ---
+      ctx.fillStyle = '#94a3b8'; ctx.font = '400 11.5px Vazirmatn'; ctx.textAlign = 'center';
+      ctx.fillText('داشبورد پایش اعتبارات و بودجه سازمانی — واحد برنامه ریزی — تولید شده به‌صورت کاملاً محلی (آفلاین)', W / 2, y + 24);
+
+      // --- دانلود ---
+      cv.toBlob(function (blob) {
+        if (!blob) { A.toast('تولید تصویر ناموفق بود', '', true); return; }
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'گزارش-' + safeName(m.name) + '-' + d.meta.fiscalYear + '.jpg';
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+        A.toast('خروجی JPG آماده شد', A.toFa(rows.length) + ' ردیف — «' + m.name + '»');
+      }, 'image/jpeg', 0.93);
+    });
+  }
+
+  window.BDExport = {
+    exportXLS: exportXLS,
+    printTable: printTable,
+    exportJPG: exportJPG
+  };
 })();
 
 </script>
